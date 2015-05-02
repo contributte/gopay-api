@@ -1,5 +1,5 @@
 {
-    "name": "Markette/GopayApi",
+    "name": "markette/gopay-api",
     "description": "Public GopayAPI SDK for PHP.",
     "keywords": ["eshop", "payment", "gopay"],
     "homepage": "http://github.com/Markette/GopayApi",
