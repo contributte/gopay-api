@@ -1,0 +1,35 @@
+{
+    "name": "Markette/GopayApi",
+    "description": "Public GopayAPI SDK for PHP.",
+    "keywords": ["eshop", "payment", "gopay"],
+    "homepage": "http://github.com/Markette/GopayApi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vojtěch Dobeš",
+            "email": "me@vojtechdobes.com"
+        },
+        {
+            "name": "Jan Škrášek",
+            "email": "hrach.cz@gmail.com"
+        },
+        {
+            "name": "Milan Felix Šulc",
+            "email": "sulcmil@gmail.com"
+        },
+        {
+            "name": "Jaroslav Hranička",
+            "email": "hranicka@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "ext-soap": "*",
+        "ext-mcrypt": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Markette\\GopayApi\\": "src/"
+        }
+    }
+}
