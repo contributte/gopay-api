@@ -342,7 +342,7 @@ class GopaySoap {
 
 		try {
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 	  		$paymentChannelsString = (!empty($paymentChannels)) ? join($paymentChannels, ",") : "";
 	  		
 	  		/*
@@ -414,15 +414,15 @@ class GopaySoap {
 				return $paymentStatus->paymentSessionId;
 
 			} else {
-				throw new Exception("Create payment failed: " . $paymentStatus->resultDescription);
+				throw new \Exception("Create payment failed: " . $paymentStatus->resultDescription);
 
 			}
 
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba pri komunikaci s WS
 			 */
-			throw new Exception("Communication with WS failed");
+			throw new \Exception("Communication with WS failed");
 		}		
 	}
 
@@ -476,7 +476,7 @@ class GopaySoap {
 			 * Inicializace WS
 			 */
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 
 	  		/*
 	  		 * Sestaveni dotazu na stav platby 
@@ -526,7 +526,7 @@ class GopaySoap {
 		 	 */
 	 		
 			if ( $paymentStatus->result != GopayHelper::CALL_COMPLETED) {
-				throw new Exception("Payment Status Call failed: " . $paymentStatus->resultDescription);
+				throw new \Exception("Payment Status Call failed: " . $paymentStatus->resultDescription);
 			}
 
 		 	if ($result["sessionState"] != GopayHelper::PAYMENT_METHOD_CHOSEN
@@ -538,7 +538,7 @@ class GopaySoap {
 		 		&& $result["sessionState"] != GopayHelper::REFUNDED
 		 		&& $result["sessionState"] != GopayHelper::PARTIALLY_REFUNDED) {
 
-		 		throw new Exception("Bad Payment Session State: " . $result["sessionState"]);
+		 		throw new \Exception("Bad Payment Session State: " . $result["sessionState"]);
 		 	}
 
 	 		GopayHelper::checkPaymentStatus(
@@ -553,11 +553,11 @@ class GopaySoap {
 			
 			return $result;
 		 	
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new Exception("Communication with WS failed");
+			throw new \Exception("Communication with WS failed");
 		}
 	}
 
@@ -569,7 +569,7 @@ class GopaySoap {
 
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 		
 		 	$paymentMethodsWS = $go_client->__call("paymentMethodList", array());
 
@@ -578,7 +578,7 @@ class GopaySoap {
 		 	
 		 	return $paymentMethods->paymentMethods;
 	 		
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
@@ -646,7 +646,7 @@ class GopaySoap {
 			 * Inicializace WS
 			 */
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 
 	  		/*
 	  		 * Sestaveni dotazu na stav platby 
@@ -704,7 +704,7 @@ class GopaySoap {
 		 	 */
 	 		
 			if ( $paymentStatus->result != GopayHelper::CALL_COMPLETED) {
-				throw new Exception("Payment Status Call failed: " . $paymentStatus->resultDescription);
+				throw new \Exception("Payment Status Call failed: " . $paymentStatus->resultDescription);
 			}
 
 		 	if ($result["sessionState"] != GopayHelper::PAYMENT_METHOD_CHOSEN
@@ -716,7 +716,7 @@ class GopaySoap {
 		 		&& $result["sessionState"] != GopayHelper::REFUNDED
 		 		&& $result["sessionState"] != GopayHelper::PARTIALLY_REFUNDED) {
 
-		 		throw new Exception("Bad Payment Session State: " . $result["sessionState"]);
+		 		throw new \Exception("Bad Payment Session State: " . $result["sessionState"]);
 		 	}
 
 	 		GopayHelper::checkPaymentStatus(
@@ -731,11 +731,11 @@ class GopaySoap {
 			
 			return $result;
 		 	
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new Exception("Communication with WS failed");
+			throw new \Exception("Communication with WS failed");
 		}
 	}
 
@@ -754,7 +754,7 @@ class GopaySoap {
 	
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 	
 			$sessionEncryptedSignature = GopayHelper::encrypt(
 											GopayHelper::hash(
@@ -771,12 +771,12 @@ class GopaySoap {
 		 	$paymentResult = $go_client->__call('voidAuthorization', array('sessionInfo'=>$paymentSession));
 			
 			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
-				throw new Exception("voided autorization failed [" . $paymentResult->resultDescription . "]");
+				throw new \Exception("voided autorization failed [" . $paymentResult->resultDescription . "]");
 				
 			} else if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
 				//zruseni predautorizace platby bylo zarazeno ke zpracovani
 				
-				throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+				throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 			}
 
 			//Overeni podpisu
@@ -786,11 +786,11 @@ class GopaySoap {
 											$paymentSessionId, 
 											$secureKey);
 			
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new Exception("SOAP error");
+			throw new \Exception("SOAP error");
 		}
 
 	}
@@ -810,7 +810,7 @@ class GopaySoap {
 	
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 	
 	  		$hash = GopayHelper::hash(
 	  					GopayHelper::concatPaymentSession((float)$targetGoId,
@@ -827,12 +827,12 @@ class GopaySoap {
 		 	$paymentResult = $go_client->__call('voidRecurrentPayment', array('sessionInfo'=>$paymentSession));
 		 	
 			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
-				throw new Exception("void recurrency failed [" . $paymentResult->resultDescription . "]");
+				throw new \Exception("void recurrency failed [" . $paymentResult->resultDescription . "]");
 				
 			} else if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
 				//zruseni opakovani platby bylo zarazeno ke zpracovani
 				
-				throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+				throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 				
 			}
 
@@ -843,11 +843,11 @@ class GopaySoap {
 											$paymentSessionId, 
 											$secureKey);
 			
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new Exception("SOAP error");
+			throw new \Exception("SOAP error");
 		}
 		
 	}
@@ -874,7 +874,7 @@ class GopaySoap {
 	
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 	
 			$encryptedSignature = GopayHelper::encrypt(
 					GopayHelper::hash(
@@ -909,15 +909,15 @@ class GopaySoap {
 		 		return $status->paymentSessionId;
 		 		
 			} else {
-				throw new Exception("Bad payment status");
+				throw new \Exception("Bad payment status");
 	
 			}
 			
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new Exception("SOAP error");
+			throw new \Exception("SOAP error");
 		}
 
 	}
@@ -936,7 +936,7 @@ class GopaySoap {
 			
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 	  		
 			$sessionEncryptedSignature = GopayHelper::encrypt(
 											GopayHelper::hash(
@@ -954,22 +954,22 @@ class GopaySoap {
 
 
 			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
-				throw new Exception("payment not captured [" . $paymentResult->resultDescription . "]");
+				throw new \Exception("payment not captured [" . $paymentResult->resultDescription . "]");
 				
 			} else if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
 				// dokonceni platby bylo zarazeno ke zpracovani
 				
-				throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+				throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 	
 			}
 			
 	 		return $paymentResult->paymentSessionId;
 
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new Exception("SOAP error");
+			throw new \Exception("SOAP error");
 		}
 	}
 
@@ -987,7 +987,7 @@ class GopaySoap {
 			
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 
 			$sessionEncryptedSignature = GopayHelper::encrypt(
 											GopayHelper::hash(
@@ -1005,22 +1005,22 @@ class GopaySoap {
 
 			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
 
-				throw new Exception("payment not refunded [" . $paymentResult->resultDescription . "]");
+				throw new \Exception("payment not refunded [" . $paymentResult->resultDescription . "]");
 				
 			} else if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
 				//vraceni platby bylo zarazeno ke zpracovani
 				
-				throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+				throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 
 			}
 			
 	 		return $paymentResult->paymentSessionId;
 
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new Exception("SOAP error");
+			throw new \Exception("SOAP error");
 		}
 	}
 
@@ -1044,7 +1044,7 @@ class GopaySoap {
 			
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled","0");
-	  		$go_client = new SoapClient(GopayConfig::ws(), array());
+	  		$go_client = new \SoapClient(GopayConfig::ws(), array());
 	  		
 			$sessionEncryptedSignature = GopayHelper::encrypt(
 											GopayHelper::hash(
@@ -1067,22 +1067,22 @@ class GopaySoap {
 		 	$paymentResult = $go_client->__call("partiallyRefundPayment", array("refundRequest"=>$refundRequest));
 
 			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
-				throw new Exception("payment not refunded [" . $paymentResult->resultDescription . "]");
+				throw new \Exception("payment not refunded [" . $paymentResult->resultDescription . "]");
 				
 			} else if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
 				//vraceni platby bylo zarazeno ke zpracovani
 				
-				throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+				throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 
 			}
 			
 	 		return $paymentResult->paymentSessionId;
 
-		} catch (SoapFault $f) {
+		} catch (\SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new Exception("SOAP error");
+			throw new \Exception("SOAP error");
 		}
 	}
 

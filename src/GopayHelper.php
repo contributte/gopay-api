@@ -403,35 +403,35 @@ class GopayHelper {
 		if (! empty($paymentStatus)) {
 
 			if ( $paymentStatus->result != GopayHelper::CALL_COMPLETED) {
-				throw new Exception("PS invalid call state state");
+				throw new \Exception("PS invalid call state state");
 			}
 
 			if ( $paymentStatus->sessionState != $sessionState) {
-				throw new Exception("PS invalid session state");
+				throw new \Exception("PS invalid session state");
 			}
 
 			if (trim($paymentStatus->orderNumber) != trim($orderNumber)) {
-				throw new Exception("PS invalid VS");
+				throw new \Exception("PS invalid VS");
 			}
 
 			if (trim($paymentStatus->productName) != trim($productName)) {
-				throw new Exception("PS invalid PN");
+				throw new \Exception("PS invalid PN");
 			}
 
 			if ($paymentStatus->targetGoId != $goId) {
-				throw new Exception("PS invalid GoID");
+				throw new \Exception("PS invalid GoID");
 			}
 
 			if ($paymentStatus->totalPrice != $totalPriceInCents) {
-				throw new Exception("PS invalid price");
+				throw new \Exception("PS invalid price");
 			}
 
 			if ($paymentStatus->currency != $currency) {
-				throw new Exception("PS invalid currency");
+				throw new \Exception("PS invalid currency");
 			}
 
 		} else {
-			throw new Exception("None payment status");
+			throw new \Exception("None payment status");
 		}
 		/*
 		 * Kontrola podpisu objednavky
@@ -456,7 +456,7 @@ class GopayHelper {
 		$decryptedHash = GopayHelper::decrypt($paymentStatus->encryptedSignature, $secureKey);
 
 		if ($decryptedHash != $hashedSignature) {
-			throw new Exception("PS invalid signature");
+			throw new \Exception("PS invalid signature");
 		}
 	}
 	
@@ -484,11 +484,11 @@ class GopayHelper {
 								  	 			$secureKey) {
 
 		if (trim($returnedOrderNumber) != trim($orderNumber)) {
-			throw new Exception("PI invalid VS");
+			throw new \Exception("PI invalid VS");
 		}
 
 		if ($returnedGoId != $targetGoId) {
-			throw new Exception("PI invalid GoID");
+			throw new \Exception("PI invalid GoID");
 		}
 
 		$hashedSignature=GopayHelper::hash(
@@ -502,7 +502,7 @@ class GopayHelper {
 		$decryptedHash = GopayHelper::decrypt($returnedEncryptedSignature, $secureKey);
 
 		if ($decryptedHash != $hashedSignature) {
-			throw new Exception("PS invalid signature");
+			throw new \Exception("PS invalid signature");
 		}
 	}
 	
@@ -524,7 +524,7 @@ class GopayHelper {
 								  			$secureKey) {
 
 		if ($returnedPaymentSessionId != $paymentSessionId) {
-			throw new Exception("PaymentResult invalid PSID");
+			throw new \Exception("PaymentResult invalid PSID");
 		}
 
 		$hashedSignature = GopayHelper::hash(
@@ -536,7 +536,7 @@ class GopayHelper {
 		$decryptedHash = GopayHelper::decrypt($returnedEncryptedSignature, $secureKey);
 
 		if ($decryptedHash != $hashedSignature) {
-			throw new Exception("PaymentResult invalid signature");
+			throw new \Exception("PaymentResult invalid signature");
 		}
 	}
 
@@ -781,7 +781,7 @@ class GopayHelper {
 		$params .= "&paymentCommand.lang=" . $lang;
 
   		$ouput = "";
-  		$ouput .= "<a target='_blank' href='" . GopayConfig::baseIntegrationURL() . "?" . $params . "'>";
+  		$ouput .= "<a target='_blank' href='" . \GopayConfig::baseIntegrationURL() . "?" . $params . "'>";
   		$ouput .= " Zaplatit ";
   		$ouput .= "</a>";
 
