@@ -1,9 +1,10 @@
 <?php
 
-namespace Markette\GopayApi;
+namespace Markette\Gopay\Api;
 
 class PaymentMethodElement
 {
+
 	public $code = NULL;
 	public $paymentMethodName = NULL;
 	public $description = NULL;

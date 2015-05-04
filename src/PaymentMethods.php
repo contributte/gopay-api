@@ -1,10 +1,9 @@
 <?php
 
-namespace Markette\GopayApi;
+namespace Markette\Gopay\Api;
 
 /**
  * Definice platebnich metod - stazeno pomoci WS ze serveru GoPay
- *
  */
 class PaymentMethods
 {

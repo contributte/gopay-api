@@ -1,6 +1,6 @@
 <?php
 
-namespace Markette\GopayApi;
+namespace Markette\Gopay\Api;
 
 /**
  * Predpokladem je PHP verze 5.1.2 a vyssi. Pro volání WS je pouzit modul soap.
@@ -439,12 +439,12 @@ class GopaySoap
 			);
 
 			/*
-		 	 * Vytvareni platby na strane GoPay prostrednictvim WS 
-		 	 */
+			  * Vytvareni platby na strane GoPay prostrednictvim WS
+			  */
 			$paymentStatus = $go_client->__call('createPayment', array('paymentCommand' => $paymentCommand));
 
 			/*
-			 * Kontrola stavu platby - musi byt ve stavu CREATED, kontrola parametru platby 
+			 * Kontrola stavu platby - musi byt ve stavu CREATED, kontrola parametru platby
 			 */
 			if ($paymentStatus->result == GopayHelper::CALL_COMPLETED
 				&& $paymentStatus->sessionState == GopayHelper::CREATED
@@ -799,8 +799,8 @@ class GopaySoap
 	 * @throws \Exception
 	 */
 	public static function voidAuthorization($paymentSessionId,
-											 $targetGoId,
-											 $secureKey)
+	                                         $targetGoId,
+	                                         $secureKey)
 	{
 		try {
 			//inicializace WS

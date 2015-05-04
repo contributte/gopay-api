@@ -1,6 +1,6 @@
 <?php
 
-namespace Markette\GopayApi;
+namespace Markette\Gopay\Api;
 
 /**
  * Předpokladem je PHP verze 5.1.2 a vyšší s modulem mcrypt.

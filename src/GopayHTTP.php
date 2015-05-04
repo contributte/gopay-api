@@ -1,6 +1,6 @@
 <?php
 
-namespace Markette\GopayApi;
+namespace Markette\Gopay\Api;
 
 /**
  * Predpokladem je PHP verze 5.1.2 a vyssi.
@@ -15,6 +15,7 @@ class GopayHTTP
 	 * Stazeni vypisu pohybu na uctu
 	 *
 	 * Ve vypisu jsou pohyby vytvorene mezi datem dateFrom do data dateTo, vcetne techto datumu
+	 *
 	 * @param String $dateFrom - datum, od ktereho se vypis generuje
 	 * @param String $dateTo - datum, do ktereho se vypis generuje
 	 * @param float $targetGoId - identifikator prijemnce - GoId

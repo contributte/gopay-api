@@ -1,6 +1,6 @@
 <?php
 
-namespace Markette\GopayApi;
+namespace Markette\Gopay\Api;
 
 /**
  * Trida obsahuje kody pro jednotlive staty
