@@ -27,6 +27,9 @@
         "ext-soap": "*",
         "ext-mcrypt": "*"
     },
+    "require-dev": {
+        "nette/tester": "~1.4.0"
+    },
     "autoload": {
         "classmap": ["src/"]
     }
