@@ -375,7 +375,7 @@ class GopaySoap
 	{
 		try {
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 			$paymentChannelsString = (!empty($paymentChannels)) ? join($paymentChannels, ",") : "";
 
 			/*
@@ -517,7 +517,7 @@ class GopaySoap
 			 * Inicializace WS
 			 */
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			/*
 			   * Sestaveni dotazu na stav platby
@@ -618,7 +618,7 @@ class GopaySoap
 		try {
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			$paymentMethodsWS = $go_client->__call("paymentMethodList", array());
 
@@ -695,7 +695,7 @@ class GopaySoap
 			 * Inicializace WS
 			 */
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			/*
 			   * Sestaveni dotazu na stav platby
@@ -805,7 +805,7 @@ class GopaySoap
 		try {
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			$sessionEncryptedSignature = GopayHelper::encrypt(
 				GopayHelper::hash(
@@ -866,7 +866,7 @@ class GopaySoap
 		try {
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			$hash = GopayHelper::hash(
 				GopayHelper::concatPaymentSession((float)$targetGoId,
@@ -936,7 +936,7 @@ class GopaySoap
 		try {
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			$encryptedSignature = GopayHelper::encrypt(
 				GopayHelper::hash(
@@ -1003,7 +1003,7 @@ class GopaySoap
 		try {
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			$sessionEncryptedSignature = GopayHelper::encrypt(
 				GopayHelper::hash(
@@ -1062,7 +1062,7 @@ class GopaySoap
 		try {
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			$sessionEncryptedSignature = GopayHelper::encrypt(
 				GopayHelper::hash(
@@ -1127,7 +1127,7 @@ class GopaySoap
 		try {
 			//inicializace WS
 			ini_set("soap.wsdl_cache_enabled", "0");
-			$go_client = new \SoapClient(GopayConfig::ws(), array());
+			$go_client = GopayConfig::createSoapClient();
 
 			$sessionEncryptedSignature = GopayHelper::encrypt(
 				GopayHelper::hash(

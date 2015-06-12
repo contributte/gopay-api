@@ -16,3 +16,12 @@ test(function () {
 	GopayConfig::init(GopayConfig::TEST);
 	Assert::equal(GopayConfig::TEST, GopayConfig::$version);
 });
+
+test(function () {
+	GopayConfig::$soapClientFactory = function ($wsdl) {
+		Assert::same(GopayConfig::ws(), $wsdl);
+		return Mockery::mock('\SoapClient');
+	};
+
+	Assert::true(GopayConfig::createSoapClient() instanceof \SoapClient);
+});
