@@ -14,7 +14,12 @@ class GopayConfig
 	/**
 	 * Parametr specifikujici, pracuje-li se na testovacim ci provoznim prostredi
 	 */
-	static $version = self::TEST;
+	public static $version = self::TEST;
+
+	/**
+	 * @var callable
+	 */
+	public static $soapClientFactory = '\Markette\Gopay\Api\SoapClientFactory::create';
 
 	/**
 	 * Nastaveni testovaciho ci provozniho prostredi prostrednictvim parametru
@@ -94,6 +99,20 @@ class GopayConfig
 			return "https://testgw.gopay.cz/gw/services/get-account-statement";
 
 		}
+	}
+
+
+	/**
+	 * @return \SoapClient
+	 */
+	public static function createSoapClient()
+	{
+		$soap = call_user_func(self::$soapClientFactory, self::ws());
+		if ($soap instanceof \SoapClient) {
+			return $soap;
+		}
+
+		throw new \UnexpectedValueException('SoapClient factory does not return instance of SoapClient.');
 	}
 
 }
