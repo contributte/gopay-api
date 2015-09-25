@@ -6,6 +6,12 @@
 [![Latest stable](https://img.shields.io/packagist/v/markette/gopay-api.svg?style=flat-square)](https://packagist.org/packages/markette/gopay-api)
 [![HHVM Status](https://img.shields.io/hhvm/markette/gopay-api.svg?style=flat-square)](http://hhvm.h4cc.de/package/markette/gopay-api)
 
+## Diskuze
+
+[![Join the chat at https://gitter.im/Markette/Gopay](https://badges.gitter.im/Join%20Chat.svg?style=flat-square)](https://gitter.im/Markette/Gopay?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+## Prolog
+
 - PHP API verze 2.5 (nejedná se o oficiální repozitář, ten neexistuje)
 - [oficiální dokumentace a zdroj kódu](http://help.gopay.com/cs/tema/integrace-2/integrace-platebni-puvodni-brany/php-api-verze-2-5)
 
