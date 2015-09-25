@@ -67,6 +67,22 @@ class GopayConfig
 		}
 	}
 
+	/**
+	 * Nové URL webove sluzby GoPay
+	 *
+	 * @return string URL - wsdl
+	 */
+	public static function fullNewIntegrationURL()
+	{
+		if (self::$version == self::PROD) {
+			return "https://gate.gopay.cz/gw/v3";
+
+		} else {
+			return "https://testgw.gopay.cz/gw/v3";
+
+		}
+	}
+
 
 	/**
 	 * URL platebni brany pro zakladni integraci
