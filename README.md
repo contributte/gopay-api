@@ -8,7 +8,7 @@
 
 ## Diskuze
 
-[![Join the chat at https://gitter.im/Markette/Gopay](https://badges.gitter.im/Join%20Chat.svg?style=flat-square)](https://gitter.im/Markette/Gopay?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/Markette/Gopay](https://img.shields.io/gitter/room/Markette/Gopay.svg?style=flat-square)](https://gitter.im/Markette/Gopay?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Prolog
 
