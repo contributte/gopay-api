@@ -24,8 +24,7 @@
     ],
     "require": {
         "php": ">=5.3",
-        "ext-soap": "*",
-        "ext-mcrypt": "*"
+        "ext-soap": "*"
     },
     "require-dev": {
         "nette/tester": "^1.7",
