@@ -918,9 +918,9 @@ class GopayHelper
 
 	private static function crypt()
 	{
-		if (function_exists('openssl_encrypt')) {
+		if (extension_loaded('openssl') && PHP_VERSION_ID >= 50400) {
 			return new Crypt\OpenSSL();
-		} elseif (function_exists('mcrypt_encrypt')) {
+		} elseif (extension_loaded('mcrypt')) {
 			return new Crypt\MCrypt();
 		} else {
 			throw new \Exception('Cannot load Crypt implementation.');

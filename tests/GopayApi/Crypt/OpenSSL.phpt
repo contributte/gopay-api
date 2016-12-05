@@ -8,8 +8,8 @@ use Tester\Assert;
 
 require __DIR__ . '/../../bootstrap.php';
 
-if (!extension_loaded('openssl')) {
-	Tester\Environment::skip('Test requires mcrypt extension to be loaded.');
+if (!extension_loaded('openssl') || PHP_VERSION_ID <= 50400) {
+	Tester\Environment::skip('Test requires openssl extension to be loaded and PHP >= 5.4.');
 }
 
 test(function () {
