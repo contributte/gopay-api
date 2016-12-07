@@ -15,7 +15,7 @@ use Markette\Gopay\Api\GopayHelper;
 class MCrypt implements Crypt
 {
 
-	public function encrypt($data, $secureKey)
+	final public function encrypt($data, $secureKey)
 	{
 		$td = mcrypt_module_open(MCRYPT_3DES, '', MCRYPT_MODE_ECB, '');
 		$mcrypt_iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
@@ -27,7 +27,7 @@ class MCrypt implements Crypt
 		return bin2hex($encrypted_data);
 	}
 
-	public function decrypt($data, $secureKey)
+	final public function decrypt($data, $secureKey)
 	{
 		$td = mcrypt_module_open(MCRYPT_3DES, '', MCRYPT_MODE_ECB, '');
 		$mcrypt_iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);

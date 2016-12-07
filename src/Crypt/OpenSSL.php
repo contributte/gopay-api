@@ -15,7 +15,7 @@ use Markette\Gopay\Api\GopayHelper;
 class OpenSSL implements Crypt
 {
 
-	public function encrypt($data, $secureKey)
+	final public function encrypt($data, $secureKey)
 	{
 		// Strip a key
 		$secureKey = substr($secureKey, 0, 24);
@@ -32,7 +32,7 @@ class OpenSSL implements Crypt
 		return bin2hex($ecrypted);
 	}
 
-	public function decrypt($data, $secureKey)
+	final public function decrypt($data, $secureKey)
 	{
 		// Strip a key
 		$secureKey = substr($secureKey, 0, 24);
