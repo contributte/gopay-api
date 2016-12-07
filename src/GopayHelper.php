@@ -69,6 +69,8 @@ class GopayHelper
 	const PAYMENT_METHOD_CHOSEN_MESSAGE = "Platba zatím nebyla provedena. O provedení platby Vás budeme neprodleně informovat pomocí emailu s potvrzením platby.";
 	const FAILED_MESSAGE = "V průběhu platby nastala chyba. Kontaktujte podporu GoPay na emailu podpora@gopay.cz.";
 
+	/** @var Crypt\Crypt|null */
+	private static $crypt;
 
 	/**
 	 * Ziskani korektniho hlaseni o stavu platby - po volani (GopaySoap::isPaymentDone)
@@ -915,16 +917,23 @@ class GopayHelper
 		return $boolean;
 	}
 
-
+	/**
+	 * @return Crypt\Crypt
+	 * @throws \Exception
+	 */
 	private static function crypt()
 	{
-		if (extension_loaded('openssl') && PHP_VERSION_ID >= 50400) {
-			return new Crypt\OpenSSL();
-		} elseif (extension_loaded('mcrypt')) {
-			return new Crypt\MCrypt();
-		} else {
-			throw new \Exception('Cannot load Crypt implementation.');
+		if (self::$crypt === NULL) {
+			if (extension_loaded('openssl') && PHP_VERSION_ID >= 50400) {
+				self::$crypt = new Crypt\OpenSSL();
+			} elseif (extension_loaded('mcrypt')) {
+				self::$crypt = new Crypt\MCrypt();
+			} else {
+				throw new \Exception('Cannot load Crypt implementation.');
+			}
 		}
+
+		return self::$crypt;
 	}
 
 }
