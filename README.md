@@ -12,7 +12,8 @@
 
 ## Prolog
 
-- PHP API verze 2.5 (nejedná se o oficiální repozitář, ten neexistuje)
+- PHP API verze 2.5 (nejedná se o oficiální repozitář)
+- [oficiální Gopay PHP SDK](https://github.com/gopaycommunity/gopay-php-api)
 - [oficiální dokumentace a zdroj kódu](http://help.gopay.com/cs/tema/integrace-2/integrace-platebni-puvodni-brany/php-api-verze-2-5)
 
 ## Instalace
