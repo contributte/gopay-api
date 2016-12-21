@@ -8,11 +8,13 @@ class GopayConfig
 	/**
 	 *  Konfiguracni trida pro ziskavani URL pro praci s platbami
 	 */
-	const TEST = "TEST";
-	const PROD = "PROD";
+	const TEST = 'TEST';
+	const PROD = 'PROD';
 
 	/**
 	 * Parametr specifikujici, pracuje-li se na testovacim ci provoznim prostredi
+	 *
+	 * @var string
 	 */
 	public static $version = self::TEST;
 
@@ -24,15 +26,16 @@ class GopayConfig
 	/**
 	 * Nastaveni testovaciho ci provozniho prostredi prostrednictvim parametru
 	 *
-	 * @param $new_version
 	 * TEST - Testovaci prostredi
 	 * PROD - Provozni prostredi
+	 *
+	 * @param string $new_version
+	 * @return void
 	 */
 	public static function init($new_version)
 	{
 		self::$version = $new_version;
 	}
-
 
 	/**
 	 * URL platebni brany pro uplnou integraci
@@ -42,14 +45,13 @@ class GopayConfig
 	public static function fullIntegrationURL()
 	{
 		if (self::$version == self::PROD) {
-			return "https://gate.gopay.cz/gw/pay-full-v2";
+			return 'https://gate.gopay.cz/gw/pay-full-v2';
 
 		} else {
-			return "https://testgw.gopay.cz/gw/pay-full-v2";
+			return 'https://testgw.gopay.cz/gw/pay-full-v2';
 
 		}
 	}
-
 
 	/**
 	 * URL webove sluzby GoPay
@@ -59,10 +61,10 @@ class GopayConfig
 	public static function ws()
 	{
 		if (self::$version == self::PROD) {
-			return "https://gate.gopay.cz/axis/EPaymentServiceV2?wsdl";
+			return 'https://gate.gopay.cz/axis/EPaymentServiceV2?wsdl';
 
 		} else {
-			return "https://testgw.gopay.cz/axis/EPaymentServiceV2?wsdl";
+			return 'https://testgw.gopay.cz/axis/EPaymentServiceV2?wsdl';
 
 		}
 	}
@@ -75,14 +77,13 @@ class GopayConfig
 	public static function fullNewIntegrationURL()
 	{
 		if (self::$version == self::PROD) {
-			return "https://gate.gopay.cz/gw/v3";
+			return 'https://gate.gopay.cz/gw/v3';
 
 		} else {
-			return "https://testgw.gopay.cz/gw/v3";
+			return 'https://testgw.gopay.cz/gw/v3';
 
 		}
 	}
-
 
 	/**
 	 * URL platebni brany pro zakladni integraci
@@ -92,14 +93,13 @@ class GopayConfig
 	public static function baseIntegrationURL()
 	{
 		if (self::$version == self::PROD) {
-			return "https://gate.gopay.cz/gw/pay-base-v2";
+			return 'https://gate.gopay.cz/gw/pay-base-v2';
 
 		} else {
-			return "https://testgw.gopay.cz/gw/pay-base-v2";
+			return 'https://testgw.gopay.cz/gw/pay-base-v2';
 
 		}
 	}
-
 
 	/**
 	 * URL pro stazeni vypisu plateb uzivatele
@@ -108,15 +108,14 @@ class GopayConfig
 	 */
 	public static function getAccountStatementURL()
 	{
-		if (self::$version == GopayConfig::PROD) {
-			return "https://gate.gopay.cz/gw/services/get-account-statement";
+		if (self::$version == self::PROD) {
+			return 'https://gate.gopay.cz/gw/services/get-account-statement';
 
 		} else {
-			return "https://testgw.gopay.cz/gw/services/get-account-statement";
+			return 'https://testgw.gopay.cz/gw/services/get-account-statement';
 
 		}
 	}
-
 
 	/**
 	 * @return \SoapClient

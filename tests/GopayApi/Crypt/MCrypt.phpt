@@ -4,7 +4,7 @@
  * Test: MCrypt
  */
 
-use Markette\Gopay\Crypt\MCrypt;
+use Markette\Gopay\Api\Crypt\MCrypt;
 use Tester\Assert;
 use Tester\Environment;
 

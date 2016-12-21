@@ -4,13 +4,14 @@
  * Copyright © 2016 Jaroslav Hranička <hranicka@outlook.com>
  */
 
-namespace Markette\Gopay\Crypt;
+namespace Markette\Gopay\Api\Crypt;
 
 interface Crypt
 {
 
 	/**
 	 * Encrypt 3DES to HEX.
+	 *
 	 * @param string $data
 	 * @param string $secureKey
 	 * @return string
@@ -19,6 +20,7 @@ interface Crypt
 
 	/**
 	 * Decrypt HEX 3DES to string.
+	 *
 	 * @param string $data
 	 * @param string $secureKey
 	 * @return string

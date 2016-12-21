@@ -22,8 +22,9 @@ test(function () {
 test(function () {
 	GopayConfig::$soapClientFactory = function ($wsdl) {
 		Assert::same(GopayConfig::ws(), $wsdl);
+
 		return Mockery::mock('\SoapClient');
 	};
 
-	Assert::true(GopayConfig::createSoapClient() instanceof \SoapClient);
+	Assert::true(GopayConfig::createSoapClient() instanceof SoapClient);
 });

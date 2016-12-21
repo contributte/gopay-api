@@ -4,7 +4,7 @@
  * Copyright © 2016 Jaroslav Hranička <hranicka@outlook.com>
  */
 
-namespace Markette\Gopay\Crypt;
+namespace Markette\Gopay\Api\Crypt;
 
 use Markette\Gopay\Api\GopayHelper;
 
@@ -12,9 +12,14 @@ use Markette\Gopay\Api\GopayHelper;
  * OpenSSL alternative for GoPay's original mcrypt immplementation in API v2.5.
  * Requires openssl installed.
  */
-class OpenSSL implements Crypt
+final class OpenSSL implements Crypt
 {
 
+	/**
+	 * @param string $data
+	 * @param string $secureKey
+	 * @return string
+	 */
 	final public function encrypt($data, $secureKey)
 	{
 		// Strip a key
@@ -31,6 +36,11 @@ class OpenSSL implements Crypt
 		return bin2hex($ecrypted);
 	}
 
+	/**
+	 * @param string $data
+	 * @param string $secureKey
+	 * @return string
+	 */
 	final public function decrypt($data, $secureKey)
 	{
 		// Strip a key
