@@ -21,8 +21,7 @@ class OpenSSL implements Crypt
 		$secureKey = substr($secureKey, 0, 24);
 
 		// Fill bytes
-		$fullFill = 8 - strlen($data) % 8;
-		for ($i = 0; $i < $fullFill; $i++) {
+		while (strlen($data) % 8 !== 0) {
 			$data .= "\0";
 		}
 
