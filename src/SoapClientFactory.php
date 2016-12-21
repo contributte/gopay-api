@@ -11,7 +11,7 @@ class SoapClientFactory
 	 */
 	public static function create($wsdl)
 	{
-		return new \SoapClient($wsdl, array());
+		return new \SoapClient($wsdl, []);
 	}
-	
+
 }

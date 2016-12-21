@@ -10,11 +10,11 @@ use Tester\Assert;
 require __DIR__ . '/../bootstrap.php';
 
 test(function () {
-	$code = "c1";
-	$paymentMethodName = "p2";
-	$description = "d3";
-	$logo = "l4";
-	$offline = "o5";
+	$code = 'c1';
+	$paymentMethodName = 'p2';
+	$description = 'd3';
+	$logo = 'l4';
+	$offline = 'o5';
 
 	$pme = new PaymentMethodElement();
 	$pme->PaymentMethodElement(

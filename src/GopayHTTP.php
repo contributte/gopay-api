@@ -7,7 +7,6 @@ namespace Markette\Gopay\Api;
  *
  * Obsahuje funkcionality pro stazeni vypisu pohybu na uctu.
  */
-
 class GopayHTTP
 {
 
@@ -20,8 +19,8 @@ class GopayHTTP
 	 * @param String $dateTo - datum, do ktereho se vypis generuje
 	 * @param float $targetGoId - identifikator prijemnce - GoId
 	 * @param String $currency - mena uctu, ze ktereho se vypis pohybu ziskava
-	 * @param string $contentType - format vypisu - podporovane typt - TYPE_CSV, TYPE_XLS, TYPE_ABO, implicitni je hodnota TYPE_CSV
 	 * @param string $secureKey - kryptovaci klic prideleny GoPay
+	 * @param string $contentType - format vypisu - podporovane typt - TYPE_CSV, TYPE_XLS, TYPE_ABO, implicitni je hodnota TYPE_CSV
 	 * @return string
 	 */
 	public function getAccountStatement(
@@ -36,21 +35,23 @@ class GopayHTTP
 		$encryptedSignature = GopayHelper::encrypt(
 			GopayHelper::hash(
 				GopayHelper::concatStatementRequest($dateFrom, $dateTo, $targetGoId, $currency, $secureKey)
-			), $secureKey);
+			),
+			$secureKey
+		);
 
 		$filename = GopayConfig::getAccountStatementURL();
-		$filename .= "?statementRequest.dateFrom=" . $dateFrom;
-		$filename .= "&statementRequest.dateTo=" . $dateTo;
-		$filename .= "&statementRequest.targetGoId=" . $targetGoId;
-		$filename .= "&statementRequest.currency=" . $currency;
-		$filename .= "&statementRequest.contentType=" . $contentType;
-		$filename .= "&statementRequest.encryptedSignature=" . $encryptedSignature;
+		$filename .= '?statementRequest.dateFrom=' . $dateFrom;
+		$filename .= '&statementRequest.dateTo=' . $dateTo;
+		$filename .= '&statementRequest.targetGoId=' . $targetGoId;
+		$filename .= '&statementRequest.currency=' . $currency;
+		$filename .= '&statementRequest.contentType=' . $contentType;
+		$filename .= '&statementRequest.encryptedSignature=' . $encryptedSignature;
 
 		echo $filename;
 
-		$handle = fopen($filename, "r");
+		$handle = fopen($filename, 'r');
 
-		$contents = "";
+		$contents = '';
 
 		if (!empty($handle)) {
 

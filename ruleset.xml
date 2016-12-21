@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Markette">
+    <!-- ########################################################################################################### -->
+    <!-- Ninjify Coding Standard -->
+    <!-- ########################################################################################################### -->
+    <rule ref="./vendor/ninjify/coding-standard/ruleset.xml"/>
+
+    <!-- ########################################################################################################### -->
+    <!-- Markette Coding Standard -->
+    <!-- ########################################################################################################### -->
+    <rule ref="Generic.NamingConventions">
+        <exclude name="Generic.NamingConventions.CamelCapsFunctionName"/>
+        <exclude name="Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase"/>
+    </rule>
+    <rule ref="Generic.PHP.DeprecatedFunctions.Deprecated">
+        <severity>4</severity>
+    </rule>
+</ruleset>

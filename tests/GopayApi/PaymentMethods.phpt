@@ -9,8 +9,8 @@ use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
 
-test(function() {
-	$methods = array('a' => 1);
+test(function () {
+	$methods = ['a' => 1];
 	$paymentMethods = new PaymentMethods();
 	$paymentMethods->adapt($methods);
 

@@ -4,7 +4,7 @@
  * Copyright © 2016 Jaroslav Hranička <hranicka@outlook.com>
  */
 
-namespace Markette\Gopay\Crypt;
+namespace Markette\Gopay\Api\Crypt;
 
 use Markette\Gopay\Api\GopayHelper;
 
@@ -12,9 +12,14 @@ use Markette\Gopay\Api\GopayHelper;
  * GoPay original crypto functions for API v2.5.
  * Requires mcrypt extension.
  */
-class MCrypt implements Crypt
+final class MCrypt implements Crypt
 {
 
+	/**
+	 * @param string $data
+	 * @param string $secureKey
+	 * @return string
+	 */
 	final public function encrypt($data, $secureKey)
 	{
 		$td = @mcrypt_module_open(MCRYPT_3DES, '', MCRYPT_MODE_ECB, '');
@@ -27,6 +32,11 @@ class MCrypt implements Crypt
 		return bin2hex($encrypted_data);
 	}
 
+	/**
+	 * @param string $data
+	 * @param string $secureKey
+	 * @return string
+	 */
 	final public function decrypt($data, $secureKey)
 	{
 		$td = @mcrypt_module_open(MCRYPT_3DES, '', MCRYPT_MODE_ECB, '');

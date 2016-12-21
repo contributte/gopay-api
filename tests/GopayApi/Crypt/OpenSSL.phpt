@@ -4,7 +4,7 @@
  * Test: OpenSSL
  */
 
-use Markette\Gopay\Crypt\OpenSSL;
+use Markette\Gopay\Api\Crypt\OpenSSL;
 use Tester\Assert;
 use Tester\Environment;
 

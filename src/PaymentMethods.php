@@ -7,10 +7,17 @@ namespace Markette\Gopay\Api;
  */
 class PaymentMethods
 {
-	public $paymentMethods = array();
 
+	/** @var array */
+	public $paymentMethods = [];
+
+	/**
+	 * @param array $paymentMethodsWS
+	 * @return void
+	 */
 	public function adapt($paymentMethodsWS)
 	{
 		$this->paymentMethods = $paymentMethodsWS;
 	}
+
 }
