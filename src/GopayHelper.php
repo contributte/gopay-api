@@ -2,8 +2,10 @@
 
 namespace Markette\Gopay\Api;
 
+use Markette\Gopay\Crypt;
+
 /**
- * Předpokladem je PHP verze 5.1.2 a vyšší s modulem mcrypt.
+ * Předpokladem je PHP verze 5.3+.
  *
  * Pomocna trida pro platbu v systemu GoPay
  *
@@ -67,6 +69,8 @@ class GopayHelper
 	const PAYMENT_METHOD_CHOSEN_MESSAGE = "Platba zatím nebyla provedena. O provedení platby Vás budeme neprodleně informovat pomocí emailu s potvrzením platby.";
 	const FAILED_MESSAGE = "V průběhu platby nastala chyba. Kontaktujte podporu GoPay na emailu podpora@gopay.cz.";
 
+	/** @var Crypt\Crypt|null */
+	private static $crypt;
 
 	/**
 	 * Ziskani korektniho hlaseni o stavu platby - po volani (GopaySoap::isPaymentDone)
@@ -347,14 +351,7 @@ class GopayHelper
 	 */
 	public static function encrypt($data, $secureKey)
 	{
-		$td = mcrypt_module_open(MCRYPT_3DES, '', MCRYPT_MODE_ECB, '');
-		$mcrypt_iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-		mcrypt_generic_init($td, substr($secureKey, 0, mcrypt_enc_get_key_size($td)), $mcrypt_iv);
-		$encrypted_data = mcrypt_generic($td, $data);
-		mcrypt_generic_deinit($td);
-		mcrypt_module_close($td);
-
-		return bin2hex($encrypted_data);
+		return self::crypt()->encrypt($data, $secureKey);
 	}
 
 
@@ -367,15 +364,7 @@ class GopayHelper
 	 */
 	public static function decrypt($data, $secureKey)
 	{
-		$td = mcrypt_module_open(MCRYPT_3DES, '', MCRYPT_MODE_ECB, '');
-		$mcrypt_iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-		mcrypt_generic_init($td, substr($secureKey, 0, mcrypt_enc_get_key_size($td)), $mcrypt_iv);
-
-		$decrypted_data = mdecrypt_generic($td, GopayHelper::convert($data));
-		mcrypt_generic_deinit($td);
-		mcrypt_module_close($td);
-
-		return Trim($decrypted_data);
+		return self::crypt()->decrypt($data, $secureKey);
 	}
 
 
@@ -926,6 +915,25 @@ class GopayHelper
 		}
 
 		return $boolean;
+	}
+
+	/**
+	 * @return Crypt\Crypt
+	 * @throws \Exception
+	 */
+	private static function crypt()
+	{
+		if (self::$crypt === NULL) {
+			if (extension_loaded('openssl') && PHP_VERSION_ID >= 50400) {
+				self::$crypt = new Crypt\OpenSSL();
+			} elseif (extension_loaded('mcrypt')) {
+				self::$crypt = new Crypt\MCrypt();
+			} else {
+				throw new \Exception('Cannot load Crypt implementation.');
+			}
+		}
+
+		return self::$crypt;
 	}
 
 }
