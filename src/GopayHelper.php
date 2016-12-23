@@ -926,7 +926,7 @@ class GopayHelper
 		if (self::$crypt === NULL) {
 			if (extension_loaded('openssl') && PHP_VERSION_ID >= 50400) {
 				self::$crypt = new Crypt\OpenSSL();
-			} elseif (extension_loaded('mcrypt')) {
+			} elseif (extension_loaded('mcrypt') && PHP_VERSION_ID >= 70000) {
 				self::$crypt = new Crypt\MCrypt();
 			} else {
 				throw new \Exception('Cannot load Crypt implementation.');
