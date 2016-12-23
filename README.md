@@ -29,4 +29,4 @@ $ composer require markette/gopay-api
 | Verze  	| PHP       	| Branch 	| Composer 	|
 |--------	|-----------	|--------	|----------	|
 | master 	| PHP >=7.0 	| master 	| ^3.0.0   	|
-| 2.5.x  	| PHP >=5.3 	| 2.5.x  	| ^2.5.2   	|
+| 2.5.x  	| PHP >=5.3 	| 2.5.x  	| ^2.5.3   	|
