@@ -28,7 +28,7 @@ test(function () {
 });
 
 test(function () {
-	$crypt = new \Markette\Gopay\Crypt\OpenSSL();
+	$crypt = new OpenSSL();
 
 	$data = 'Drsné kousku, městem, začít mě s zdarma pevnosti polárním obeplutí miliardy i kdysi dotknete objevováním nástrojů, za a vědě viru oáze sněhová projev vrstvě, sníží muzeum mu e-mail zimu. Daného čepice napadá vrcholky u byste klidné natož vzájemné. Seveřané všemi indickém vědce napadne, lovecké vědu zmrzlý podrobněji, 1 032 km specifických naopak i brazílii čínskými mělo zaznamenal, ní palmových všech. Svědky dělá narušovány, dne sklo časový každý zemském 057 s světě. Let neupře už nejraději svítící.';
 	$key = 'Stavy těla z monokultury francouzi vidět hluboké v turistiky uzavřeli k pod, článku už pevnině studenty, ukončil náplní dobrodružné bránil převést, spolufinancuje rolníky o iniciovala těm vyspává jmenovat na mohlo těch k rozmnožováním.';
