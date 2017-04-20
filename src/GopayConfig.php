@@ -4,12 +4,11 @@ namespace Markette\Gopay\Api;
 
 class GopayConfig
 {
-
 	/**
 	 *  Konfiguracni trida pro ziskavani URL pro praci s platbami
 	 */
-	const TEST = "TEST";
-	const PROD = "PROD";
+	const TEST = 'TEST';
+	const PROD = 'PROD';
     
     /**
      * Testovaci a produkcni URL
@@ -48,10 +47,10 @@ class GopayConfig
 	public static function fullIntegrationURL()
 	{
 		if (self::$version == self::PROD) {
-			return self::PROD_URL . "gw/pay-full-v2";
+			return self::PROD_URL . 'gw/pay-full-v2';
 
 		} else {
-			return self::TEST_URL . "gw/pay-full-v2";
+			return self::TEST_URL . 'gw/pay-full-v2';
 
 		}
 	}
@@ -65,10 +64,10 @@ class GopayConfig
 	public static function ws()
 	{
 		if (self::$version == self::PROD) {
-			return self::PROD_URL . "axis/EPaymentServiceV2?wsdl";
+			return self::PROD_URL . 'axis/EPaymentServiceV2?wsdl';
 
 		} else {
-			return self::TEST_URL . "axis/EPaymentServiceV2?wsdl";
+			return self::TEST_URL . 'axis/EPaymentServiceV2?wsdl';
 
 		}
 	}
@@ -81,10 +80,10 @@ class GopayConfig
 	public static function fullNewIntegrationURL()
 	{
 		if (self::$version == self::PROD) {
-			return self::PROD_URL . "gw/v3";
+			return self::PROD_URL . 'gw/v3';
 
 		} else {
-			return self::TEST_URL . "gw/v3";
+			return self::TEST_URL . 'gw/v3';
 
 		}
 	}
@@ -98,10 +97,10 @@ class GopayConfig
 	public static function baseIntegrationURL()
 	{
 		if (self::$version == self::PROD) {
-			return self::PROD_URL . "gw/pay-base-v2";
+			return self::PROD_URL . 'gw/pay-base-v2';
 
 		} else {
-			return self::TEST_URL . "gw/pay-base-v2";
+			return self::TEST_URL . 'gw/pay-base-v2';
 
 		}
 	}
@@ -114,11 +113,11 @@ class GopayConfig
 	 */
 	public static function getAccountStatementURL()
 	{
-		if (self::$version == GopayConfig::PROD) {
-			return self::PROD_URL . "gw/services/get-account-statement";
+		if (self::$version == self::PROD) {
+			return self::PROD_URL . 'gw/services/get-account-statement';
 
 		} else {
-			return self::TEST_URL . "gw/services/get-account-statement";
+			return self::TEST_URL . 'gw/services/get-account-statement';
 
 		}
 	}
