@@ -25,5 +25,5 @@ test(function () {
 		return Mockery::mock('\SoapClient');
 	};
 
-	Assert::true(GopayConfig::createSoapClient() instanceof \SoapClient);
+	Assert::true(GopayConfig::createSoapClient() instanceof SoapClient);
 });
