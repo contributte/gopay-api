@@ -4,6 +4,7 @@ namespace Markette\Gopay\Api;
 
 class GopayConfig
 {
+	
 	/**
 	 *  Konfiguracni trida pro ziskavani URL pro praci s platbami
 	 */
@@ -18,6 +19,7 @@ class GopayConfig
 
 	/**
 	 * Parametr specifikujici, pracuje-li se na testovacim ci provoznim prostredi
+	 * @var string $version verze
 	 */
 	public static $version = self::TEST;
 
@@ -29,9 +31,10 @@ class GopayConfig
 	/**
 	 * Nastaveni testovaciho ci provozniho prostredi prostrednictvim parametru
 	 *
-	 * @param $new_version
 	 * TEST - Testovaci prostredi
 	 * PROD - Provozni prostredi
+	 *
+	 * @var string $new_version
 	 */
 	public static function init($new_version)
 	{
