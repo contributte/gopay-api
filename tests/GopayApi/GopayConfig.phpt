@@ -16,7 +16,7 @@ test(function () {
 
 	GopayConfig::init(GopayConfig::TEST);
 	Assert::equal(GopayConfig::TEST, GopayConfig::$version);
-	Assert::equal('https://testgw.gopay.cz/gw/v3', GopayConfig::fullNewIntegrationURL());
+	Assert::equal('https://gw.sandbox.gopay.com/gw/v3', GopayConfig::fullNewIntegrationURL());
 });
 
 test(function () {
