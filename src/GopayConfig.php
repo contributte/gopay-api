@@ -20,7 +20,7 @@ class GopayConfig
 	/**
 	 * Parametr specifikujici, pracuje-li se na testovacim ci provoznim prostredi
 	 *
-	 * @var string $version verze
+	 * @var string
 	 */
 	public static $version = self::TEST;
 
