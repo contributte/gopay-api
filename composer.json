@@ -3,7 +3,7 @@
   "description": "Public GopayAPI SDK for PHP.",
   "keywords": ["eshop", "payment", "gopay", "api", "sdk"],
   "homepage": "https://github.com/Markette/GopayApi",
-  "license": "New BSD",
+  "license": "BSD-3-Clause",
   "authors": [
       {
           "name": "Vojtěch Dobeš",
