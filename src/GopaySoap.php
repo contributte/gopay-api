@@ -376,7 +376,7 @@ class GopaySoap
 		try {
 			ini_set("soap.wsdl_cache_enabled", "0");
 			$go_client = GopayConfig::createSoapClient();
-			$paymentChannelsString = (!empty($paymentChannels)) ? join($paymentChannels, ",") : "";
+			$paymentChannelsString = (!empty($paymentChannels)) ? implode(",", $paymentChannels) : "";
 
 			/*
 			 * Sestaveni pozadavku pro zalozeni platby
