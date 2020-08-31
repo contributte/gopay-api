@@ -650,7 +650,7 @@ class GopayHelper
 		$lang
 	)
 	{
-		$paymentChannelsString = (!empty($paymentChannels)) ? join($paymentChannels, ',') : '';
+		$paymentChannelsString = (!empty($paymentChannels)) ? join(',', $paymentChannels) : '';
 
 		$encryptedSignature = self::encrypt(
 			self::hash(
@@ -784,7 +784,7 @@ class GopayHelper
 		$lang
 	)
 	{
-		$paymentChannelsString = (!empty($paymentChannels)) ? join($paymentChannels, ',') : '';
+		$paymentChannelsString = (!empty($paymentChannels)) ? join(',', $paymentChannels) : '';
 
 		$encryptedSignature = self::encrypt(
 			self::hash(
