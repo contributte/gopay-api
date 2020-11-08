@@ -3,11 +3,11 @@
 <p align=center>
   <a href="https://github.com/contributte/gopay-api/actions"><img src="https://badgen.net/travis/contributte/gopay-api?cache=300"></a>
   <a href="https://coveralls.io/r/contributte/gopay-api"><img src="https://badgen.net/coveralls/c/github/contributte/gopay-api?cache=300"></a>
-  <a href="https://packagist.org/packages/contributte/gopay-api"><img src="https://badgen.net/packagist/dm/contributte/gopay-api"></a>
-  <a href="https://packagist.org/packages/contributte/gopay-api"><img src="https://badgen.net/packagist/v/contributte/gopay-api"></a>
+  <a href="https://packagist.org/packages/markette/gopay-api"><img src="https://badgen.net/packagist/dm/markette/gopay-api"></a>
+  <a href="https://packagist.org/packages/markette/gopay-api"><img src="https://badgen.net/packagist/v/markette/gopay-api"></a>
 </p>
 <p align=center>
-  <a href="https://packagist.org/packages/contributte/gopay-api"><img src="https://badgen.net/packagist/php/contributte/gopay-api"></a>
+  <a href="https://packagist.org/packages/markette/gopay-api"><img src="https://badgen.net/packagist/php/markette/gopay-api"></a>
   <a href="https://github.com/contributte/gopay-api"><img src="https://badgen.net/github/license/contributte/gopay-api"></a>
   <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
   <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
