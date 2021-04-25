@@ -1,6 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Markette\Gopay\Api;
+
+use Exception;
+use SoapFault;
 
 /**
  * Predpokladem je PHP verze 5.1.2 a vyssi. Pro volání WS je pouzit modul soap.
@@ -47,7 +50,6 @@ class GopaySoap
 	 *
 	 * Jazyk
 	 * @param string $lang - jazyk plat. brany
-	 *
 	 * @return string paymentSessionId Parametry jsou vraceny v nezmenene podobe jako soucast volani dotazu na stav platby $paymentStatus (viz metoda isPaymentDone)
 	 */
 	public static function createRecurrentPayment(
@@ -87,8 +89,8 @@ class GopaySoap
 			$orderNumber,
 			$successURL,
 			$failedURL,
-			FALSE,
-			TRUE,
+			false,
+			true,
 			$recurrenceDateTo,
 			$recurrenceCycle,
 			$recurrencePeriod,
@@ -146,7 +148,6 @@ class GopaySoap
 	 *
 	 * Jazyk
 	 * @param string $lang - jazyk plat. brany
-	 *
 	 * @return string paymentSessionId Parametry jsou vraceny v nezmenene podobe jako soucast volani dotazu na stav platby $paymentStatus (viz metoda isPaymentDone)
 	 */
 	public static function createPreAutorizedPayment(
@@ -183,11 +184,11 @@ class GopaySoap
 			$orderNumber,
 			$successURL,
 			$failedURL,
-			TRUE,
-			FALSE,
-			NULL,
-			NULL,
-			NULL,
+			true,
+			false,
+			null,
+			null,
+			null,
 			$paymentChannels,
 			$defaultPaymentChannel,
 			$secureKey,
@@ -242,7 +243,6 @@ class GopaySoap
 	 *
 	 * Jazyk
 	 * @param string $lang - jazyk plat. brany
-	 *
 	 * @return string paymentSessionId Parametry jsou vraceny v nezmenene podobe jako soucast volani dotazu na stav platby $paymentStatus (viz metoda isPaymentDone)
 	 */
 	public static function createPayment(
@@ -279,11 +279,11 @@ class GopaySoap
 			$orderNumber,
 			$successURL,
 			$failedURL,
-			FALSE,
-			FALSE,
-			NULL,
-			NULL,
-			NULL,
+			false,
+			false,
+			null,
+			null,
+			null,
 			$paymentChannels,
 			$defaultPaymentChannel,
 			$secureKey,
@@ -313,8 +313,8 @@ class GopaySoap
 	 * @param string $orderNumber - identifikator objednavky
 	 * @param string $successURL - URL stranky, kam je zakaznik presmerovan po uspesnem zaplaceni
 	 * @param string $failedURL - URL stranky, kam je zakaznik presmerovan po zruseni platby / neuspesnem zaplaceni
-	 * @param boolean $preAuthorization - jedna-li se o predautorizovanou platbu
-	 * @param boolean $recurrentPayment - jedna-li se o opakovanou platbu
+	 * @param bool $preAuthorization - jedna-li se o predautorizovanou platbu
+	 * @param bool $recurrentPayment - jedna-li se o opakovanou platbu
 	 * @param string $recurrenceDateTo - datum, do nehoz budou provadeny opakovane platby. Jedna se textovy retezec ve formatu yyyy-MM-dd.
 	 * @param string $recurrenceCycle - zakladni casovou jednotku opakovani. Nabyva hodnot [DAY, WEEK, MONTH], pro opakování od CS a.s. lze pouzit pouze hodnotu DAY.
 	 * @param int $recurrencePeriod - definuje periodu opakovane platby. Napr. při konfiguraci DAY,5 bude platba provadena kazdy 5. den
@@ -342,9 +342,8 @@ class GopaySoap
 	 *
 	 * Jazyk
 	 * @param string $lang - jazyk plat. brany
-	 *
 	 * @return string paymentSessionId  Parametry jsou vraceny v nezmenene podobe jako soucast volani dotazu na stav platby $paymentStatus (viz metoda isPaymentDone)
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function createBasePayment(
 		$targetGoId,
@@ -380,7 +379,7 @@ class GopaySoap
 		try {
 			ini_set('soap.wsdl_cache_enabled', '0');
 			$go_client = GopayConfig::createSoapClient();
-			$paymentChannelsString = is_array($paymentChannels) ? join(',', $paymentChannels) : '';
+			$paymentChannelsString = is_array($paymentChannels) ? implode(',', $paymentChannels) : '';
 
 			/*
 			 * Sestaveni pozadavku pro zalozeni platby
@@ -450,23 +449,22 @@ class GopaySoap
 			/*
 			 * Kontrola stavu platby - musi byt ve stavu CREATED, kontrola parametru platby
 			 */
-			if ($paymentStatus->result == GopayHelper::CALL_COMPLETED
-				&& $paymentStatus->sessionState == GopayHelper::CREATED
+			if ($paymentStatus->result === GopayHelper::CALL_COMPLETED
+				&& $paymentStatus->sessionState === GopayHelper::CREATED
 				&& $paymentStatus->paymentSessionId > 0
 			) {
 
 				return $paymentStatus->paymentSessionId;
 
 			} else {
-				throw new \Exception('Create payment failed: ' . $paymentStatus->resultDescription);
+				throw new Exception('Create payment failed: ' . $paymentStatus->resultDescription);
 
 			}
-
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba pri komunikaci s WS
 			 */
-			throw new \Exception('Communication with WS failed');
+			throw new Exception('Communication with WS failed');
 		}
 	}
 
@@ -507,7 +505,7 @@ class GopaySoap
 	 * @param string $productName - popis objednavky zobrazujici se na platebni brane
 	 * @param string $secureKey - kryptovaci klic pridelene GoPay
 	 * @return array $result
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function isPaymentDone(
 		$paymentSessionId,
@@ -578,21 +576,21 @@ class GopaySoap
 			  * Kontrola zaplacenosti objednavky, verifikace parametru objednavky
 			  */
 
-			if ($paymentStatus->result != GopayHelper::CALL_COMPLETED) {
-				throw new \Exception('Payment Status Call failed: ' . $paymentStatus->resultDescription);
+			if ($paymentStatus->result !== GopayHelper::CALL_COMPLETED) {
+				throw new Exception('Payment Status Call failed: ' . $paymentStatus->resultDescription);
 			}
 
-			if ($result['sessionState'] != GopayHelper::PAYMENT_METHOD_CHOSEN
-				&& $result['sessionState'] != GopayHelper::CREATED
-				&& $result['sessionState'] != GopayHelper::PAID
-				&& $result['sessionState'] != GopayHelper::AUTHORIZED
-				&& $result['sessionState'] != GopayHelper::CANCELED
-				&& $result['sessionState'] != GopayHelper::TIMEOUTED
-				&& $result['sessionState'] != GopayHelper::REFUNDED
-				&& $result['sessionState'] != GopayHelper::PARTIALLY_REFUNDED
+			if ($result['sessionState'] !== GopayHelper::PAYMENT_METHOD_CHOSEN
+				&& $result['sessionState'] !== GopayHelper::CREATED
+				&& $result['sessionState'] !== GopayHelper::PAID
+				&& $result['sessionState'] !== GopayHelper::AUTHORIZED
+				&& $result['sessionState'] !== GopayHelper::CANCELED
+				&& $result['sessionState'] !== GopayHelper::TIMEOUTED
+				&& $result['sessionState'] !== GopayHelper::REFUNDED
+				&& $result['sessionState'] !== GopayHelper::PARTIALLY_REFUNDED
 			) {
 
-				throw new \Exception('Bad Payment Session State: ' . $result['sessionState']);
+				throw new Exception('Bad Payment Session State: ' . $result['sessionState']);
 			}
 
 			GopayHelper::checkPaymentStatus(
@@ -608,11 +606,11 @@ class GopaySoap
 
 			return $result;
 
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new \Exception('Communication with WS failed');
+			throw new Exception('Communication with WS failed');
 		}
 	}
 
@@ -636,11 +634,11 @@ class GopaySoap
 
 			return $paymentMethods->paymentMethods;
 
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			return NULL;
+			return null;
 		}
 	}
 
@@ -689,8 +687,7 @@ class GopaySoap
 	 * @param string $productName - popis objednavky zobrazujici se na platebni brane
 	 * @param string $secureKey - kryptovaci klic pridelene GoPay
 	 * @return array $result
-	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function isPaymentDoneWCust(
 		$paymentSessionId,
@@ -768,21 +765,21 @@ class GopaySoap
 			  * Kontrola zaplacenosti objednavky, verifikace parametru objednavky
 			  */
 
-			if ($paymentStatus->result != GopayHelper::CALL_COMPLETED) {
-				throw new \Exception('Payment Status Call failed: ' . $paymentStatus->resultDescription);
+			if ($paymentStatus->result !== GopayHelper::CALL_COMPLETED) {
+				throw new Exception('Payment Status Call failed: ' . $paymentStatus->resultDescription);
 			}
 
-			if ($result['sessionState'] != GopayHelper::PAYMENT_METHOD_CHOSEN
-				&& $result['sessionState'] != GopayHelper::CREATED
-				&& $result['sessionState'] != GopayHelper::PAID
-				&& $result['sessionState'] != GopayHelper::AUTHORIZED
-				&& $result['sessionState'] != GopayHelper::CANCELED
-				&& $result['sessionState'] != GopayHelper::TIMEOUTED
-				&& $result['sessionState'] != GopayHelper::REFUNDED
-				&& $result['sessionState'] != GopayHelper::PARTIALLY_REFUNDED
+			if ($result['sessionState'] !== GopayHelper::PAYMENT_METHOD_CHOSEN
+				&& $result['sessionState'] !== GopayHelper::CREATED
+				&& $result['sessionState'] !== GopayHelper::PAID
+				&& $result['sessionState'] !== GopayHelper::AUTHORIZED
+				&& $result['sessionState'] !== GopayHelper::CANCELED
+				&& $result['sessionState'] !== GopayHelper::TIMEOUTED
+				&& $result['sessionState'] !== GopayHelper::REFUNDED
+				&& $result['sessionState'] !== GopayHelper::PARTIALLY_REFUNDED
 			) {
 
-				throw new \Exception('Bad Payment Session State: ' . $result['sessionState']);
+				throw new Exception('Bad Payment Session State: ' . $result['sessionState']);
 			}
 
 			GopayHelper::checkPaymentStatus(
@@ -798,11 +795,11 @@ class GopaySoap
 
 			return $result;
 
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new \Exception('Communication with WS failed');
+			throw new Exception('Communication with WS failed');
 		}
 	}
 
@@ -814,7 +811,7 @@ class GopaySoap
 	 * @param float $targetGoId - identifikator prijemnce - GoId
 	 * @param string $secureKey - kryptovaci klic prideleny GoPay
 	 * @return void
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function voidAuthorization(
 		$paymentSessionId,
@@ -846,14 +843,14 @@ class GopaySoap
 
 			$paymentResult = $go_client->__call('voidAuthorization', ['sessionInfo' => $paymentSession]);
 
-			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
-				throw new \Exception('voided autorization failed [' . $paymentResult->resultDescription . ']');
+			if ($paymentResult->result === GopayHelper::CALL_RESULT_FAILED) {
+				throw new Exception('voided autorization failed [' . $paymentResult->resultDescription . ']');
 
 			} else {
-				if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
+				if ($paymentResult->result === GopayHelper::CALL_RESULT_ACCEPTED) {
 					//zruseni predautorizace platby bylo zarazeno ke zpracovani
 
-					throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+					throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 				}
 			}
 
@@ -866,11 +863,11 @@ class GopaySoap
 				$secureKey
 			);
 
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new \Exception('SOAP error');
+			throw new Exception('SOAP error');
 		}
 	}
 
@@ -882,7 +879,7 @@ class GopaySoap
 	 * @param float $targetGoId - identifikator prijemnce - GoId
 	 * @param string $secureKey - kryptovaci klic prideleny GoPay
 	 * @return void
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function voidRecurrentPayment(
 		$paymentSessionId,
@@ -913,14 +910,14 @@ class GopaySoap
 
 			$paymentResult = $go_client->__call('voidRecurrentPayment', ['sessionInfo' => $paymentSession]);
 
-			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
-				throw new \Exception('void recurrency failed [' . $paymentResult->resultDescription . ']');
+			if ($paymentResult->result === GopayHelper::CALL_RESULT_FAILED) {
+				throw new Exception('void recurrency failed [' . $paymentResult->resultDescription . ']');
 
 			} else {
-				if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
+				if ($paymentResult->result === GopayHelper::CALL_RESULT_ACCEPTED) {
 					//zruseni opakovani platby bylo zarazeno ke zpracovani
 
-					throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+					throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 				}
 			}
 
@@ -933,11 +930,11 @@ class GopaySoap
 				$secureKey
 			);
 
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new \Exception('SOAP error');
+			throw new Exception('SOAP error');
 		}
 	}
 
@@ -953,7 +950,7 @@ class GopaySoap
 	 * @param float $targetGoId - identifikator prijemnce - GoId
 	 * @param string $secureKey - kryptovaci klic prideleny GoPay
 	 * @return string
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function performRecurrence(
 		$parentPaymentSessionId,
@@ -993,7 +990,7 @@ class GopaySoap
 
 			$status = $go_client->__call('createRecurrentPayment', ['recurrenceRequest' => $recurrenceRequest]);
 
-			if ($status->result == GopayHelper::CALL_COMPLETED) {
+			if ($status->result === GopayHelper::CALL_COMPLETED) {
 
 				GopayHelper::checkPaymentStatus(
 					$status,
@@ -1009,15 +1006,14 @@ class GopaySoap
 				return $status->paymentSessionId;
 
 			} else {
-				throw new \Exception('Bad payment status');
+				throw new Exception('Bad payment status');
 
 			}
-
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new \Exception('SOAP error');
+			throw new Exception('SOAP error');
 		}
 	}
 
@@ -1029,7 +1025,7 @@ class GopaySoap
 	 * @param float $targetGoId - identifikator prijemnce - GoId
 	 * @param string $secureKey - kryptovaci klic prideleny GoPay
 	 * @return string
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function capturePayment(
 		$paymentSessionId,
@@ -1061,25 +1057,25 @@ class GopaySoap
 
 			$paymentResult = $go_client->__call('capturePayment', ['sessionInfo' => $paymentSession]);
 
-			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
-				throw new \Exception('payment not captured [' . $paymentResult->resultDescription . ']');
+			if ($paymentResult->result === GopayHelper::CALL_RESULT_FAILED) {
+				throw new Exception('payment not captured [' . $paymentResult->resultDescription . ']');
 
 			} else {
-				if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
+				if ($paymentResult->result === GopayHelper::CALL_RESULT_ACCEPTED) {
 					// dokonceni platby bylo zarazeno ke zpracovani
 
-					throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+					throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 
 				}
 			}
 
 			return $paymentResult->paymentSessionId;
 
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new \Exception('SOAP error');
+			throw new Exception('SOAP error');
 		}
 	}
 
@@ -1091,7 +1087,7 @@ class GopaySoap
 	 * @param float $targetGoId - identifikator prijemnce - GoId
 	 * @param string $secureKey - kryptovaci klic prideleny GoPay
 	 * @return string
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function refundPayment(
 		$paymentSessionId,
@@ -1123,26 +1119,26 @@ class GopaySoap
 
 			$paymentResult = $go_client->__call('refundPayment', ['sessionInfo' => $paymentSession]);
 
-			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
+			if ($paymentResult->result === GopayHelper::CALL_RESULT_FAILED) {
 
-				throw new \Exception('payment not refunded [' . $paymentResult->resultDescription . ']');
+				throw new Exception('payment not refunded [' . $paymentResult->resultDescription . ']');
 
 			} else {
-				if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
+				if ($paymentResult->result === GopayHelper::CALL_RESULT_ACCEPTED) {
 					//vraceni platby bylo zarazeno ke zpracovani
 
-					throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+					throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 
 				}
 			}
 
 			return $paymentResult->paymentSessionId;
 
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new \Exception('SOAP error');
+			throw new Exception('SOAP error');
 		}
 	}
 
@@ -1157,7 +1153,7 @@ class GopaySoap
 	 * @param float $targetGoId - identifikator prijemnce - GoId
 	 * @param string $secureKey - kryptovaci klic prideleny GoPay
 	 * @return string
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function refundPaymentPartially(
 		$paymentSessionId,
@@ -1198,24 +1194,24 @@ class GopaySoap
 
 			$paymentResult = $go_client->__call('partiallyRefundPayment', ['refundRequest' => $refundRequest]);
 
-			if ($paymentResult->result == GopayHelper::CALL_RESULT_FAILED) {
-				throw new \Exception('payment not refunded [' . $paymentResult->resultDescription . ']');
+			if ($paymentResult->result === GopayHelper::CALL_RESULT_FAILED) {
+				throw new Exception('payment not refunded [' . $paymentResult->resultDescription . ']');
 
 			} else {
-				if ($paymentResult->result == GopayHelper::CALL_RESULT_ACCEPTED) {
+				if ($paymentResult->result === GopayHelper::CALL_RESULT_ACCEPTED) {
 					//vraceni platby bylo zarazeno ke zpracovani
 
-					throw new \Exception(GopayHelper::CALL_RESULT_ACCEPTED);
+					throw new Exception(GopayHelper::CALL_RESULT_ACCEPTED);
 				}
 			}
 
 			return $paymentResult->paymentSessionId;
 
-		} catch (\SoapFault $f) {
+		} catch (SoapFault $f) {
 			/*
 			 * Chyba v komunikaci s GoPay serverem
 			 */
-			throw new \Exception('SOAP error');
+			throw new Exception('SOAP error');
 		}
 	}
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Markette\Gopay\Api;
 
@@ -22,52 +22,52 @@ class GopayHelper
 	/**
 	 * Kody stavu platby
 	 */
-	const CREATED = 'CREATED';
-	const PAYMENT_METHOD_CHOSEN = 'PAYMENT_METHOD_CHOSEN';
-	const PAID = 'PAID';
-	const AUTHORIZED = 'AUTHORIZED';
-	const CANCELED = 'CANCELED';
-	const TIMEOUTED = 'TIMEOUTED';
-	const REFUNDED = 'REFUNDED';
-	const PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED';
-	const FAILED = 'FAILED';
-	const CALL_COMPLETED = 'CALL_COMPLETED';
-	const CALL_FAILED = 'CALL_FAILED';
+	public const CREATED = 'CREATED';
+	public const PAYMENT_METHOD_CHOSEN = 'PAYMENT_METHOD_CHOSEN';
+	public const PAID = 'PAID';
+	public const AUTHORIZED = 'AUTHORIZED';
+	public const CANCELED = 'CANCELED';
+	public const TIMEOUTED = 'TIMEOUTED';
+	public const REFUNDED = 'REFUNDED';
+	public const PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED';
+	public const FAILED = 'FAILED';
+	public const CALL_COMPLETED = 'CALL_COMPLETED';
+	public const CALL_FAILED = 'CALL_FAILED';
 
 	/**
 	 * Konstanty pro opakovanou platbu
 	 */
-	const RECURRENCE_CYCLE_MONTH = 'MONTH';
-	const RECURRENCE_CYCLE_WEEK = 'WEEK';
-	const RECURRENCE_CYCLE_DAY = 'DAY';
-	const RECURRENCE_CYCLE_ON_DEMAND = 'ON_DEMAND';
+	public const RECURRENCE_CYCLE_MONTH = 'MONTH';
+	public const RECURRENCE_CYCLE_WEEK = 'WEEK';
+	public const RECURRENCE_CYCLE_DAY = 'DAY';
+	public const RECURRENCE_CYCLE_ON_DEMAND = 'ON_DEMAND';
 
 	/**
 	 * Konstanty pro zruseni opakovani platby
 	 */
-	const CALL_RESULT_ACCEPTED = 'ACCEPTED';
-	const CALL_RESULT_FINISHED = 'FINISHED';
-	const CALL_RESULT_FAILED = 'FAILED';
+	public const CALL_RESULT_ACCEPTED = 'ACCEPTED';
+	public const CALL_RESULT_FINISHED = 'FINISHED';
+	public const CALL_RESULT_FAILED = 'FAILED';
 
 	/**
 	 * URL obrazku tlacitek pro platebni formulare a odkazy
 	 */
-	const iconRychloplatba = 'https://www.gopay.cz/download/PT_rychloplatba.png';
-	const iconDaruj = 'https://www.gopay.cz/download/PT_daruj.png';
-	const iconBuynow = 'https://www.gopay.cz/download/PT_buynow.png';
-	const iconDonate = 'https://www.gopay.cz/download/PT_donate.png';
+	public const iconRychloplatba = 'https://www.gopay.cz/download/PT_rychloplatba.png';
+	public const iconDaruj = 'https://www.gopay.cz/download/PT_daruj.png';
+	public const iconBuynow = 'https://www.gopay.cz/download/PT_buynow.png';
+	public const iconDonate = 'https://www.gopay.cz/download/PT_donate.png';
 
 	/**
 	 * Hlaseni o stavu platby
 	 */
-	const PAID_MESSAGE = 'Platba byla úspěšně provedena.<br>Děkujeme Vám za využití našich služeb.';
-	const CANCELED_MESSAGE = 'Platba byla zrušena.<br>Opakujte platbu znovu, prosím.';
-	const AUTHORIZED_MESSAGE = 'Platba byla autorizována, čeká se na dokončení. O provedení platby Vás budeme budeme neprodleně informovat pomocí emailu s potvrzením platby.';
-	const REFUNDED_MESSAGE = 'Platba byla vrácena.';
-	const PAYMENT_METHOD_CHOSEN_ONLINE_MESSAGE = 'Platba zatím nebyla provedena. O provedení platby Vás budeme neprodleně informovat pomocí emailu s potvrzením platby. Pokud neobdržíte do následujícího pracovního dne potvrzovací email o platbě, kontaktujte podporu GoPay na emailu podpora@gopay.cz.';
-	const PAYMENT_METHOD_CHOSEN_OFFLINE_MESSAGE = 'Platba zatím nebyla provedena. Na platební bráně GoPay jste získali platební údaje a na Váš email Vám byly zaslány informace k provedení platby. O provedení platby Vás budeme budeme neprodleně informovat pomocí emailu s potvrzením platby.';
-	const PAYMENT_METHOD_CHOSEN_MESSAGE = 'Platba zatím nebyla provedena. O provedení platby Vás budeme neprodleně informovat pomocí emailu s potvrzením platby.';
-	const FAILED_MESSAGE = 'V průběhu platby nastala chyba. Kontaktujte podporu GoPay na emailu podpora@gopay.cz.';
+	public const PAID_MESSAGE = 'Platba byla úspěšně provedena.<br>Děkujeme Vám za využití našich služeb.';
+	public const CANCELED_MESSAGE = 'Platba byla zrušena.<br>Opakujte platbu znovu, prosím.';
+	public const AUTHORIZED_MESSAGE = 'Platba byla autorizována, čeká se na dokončení. O provedení platby Vás budeme budeme neprodleně informovat pomocí emailu s potvrzením platby.';
+	public const REFUNDED_MESSAGE = 'Platba byla vrácena.';
+	public const PAYMENT_METHOD_CHOSEN_ONLINE_MESSAGE = 'Platba zatím nebyla provedena. O provedení platby Vás budeme neprodleně informovat pomocí emailu s potvrzením platby. Pokud neobdržíte do následujícího pracovního dne potvrzovací email o platbě, kontaktujte podporu GoPay na emailu podpora@gopay.cz.';
+	public const PAYMENT_METHOD_CHOSEN_OFFLINE_MESSAGE = 'Platba zatím nebyla provedena. Na platební bráně GoPay jste získali platební údaje a na Váš email Vám byly zaslány informace k provedení platby. O provedení platby Vás budeme budeme neprodleně informovat pomocí emailu s potvrzením platby.';
+	public const PAYMENT_METHOD_CHOSEN_MESSAGE = 'Platba zatím nebyla provedena. O provedení platby Vás budeme neprodleně informovat pomocí emailu s potvrzením platby.';
+	public const FAILED_MESSAGE = 'V průběhu platby nastala chyba. Kontaktujte podporu GoPay na emailu podpora@gopay.cz.';
 
 	/** @var Crypt|null */
 	private static $crypt;
@@ -77,36 +77,35 @@ class GopayHelper
 	 *
 	 * @param String $sessionState - stav platby. Hodnoty viz konstanty GopayHelper
 	 * @param String $sessionSubState - detailnejsi popis stavu platby
-	 *
 	 * @return String retezec popisujici stav platby
 	 */
 	public static function getResultMessage($sessionState, $sessionSubState)
 	{
-		if ($sessionState == self::PAID) {
+		if ($sessionState === self::PAID) {
 			$result = self::PAID_MESSAGE;
 
 		} else {
-			if ($sessionState == self::CANCELED
-				|| $sessionState == self::TIMEOUTED
-				|| $sessionState == self::CREATED
+			if ($sessionState === self::CANCELED
+				|| $sessionState === self::TIMEOUTED
+				|| $sessionState === self::CREATED
 			) {
 				$result = self::CANCELED_MESSAGE;
 
 			} else {
-				if ($sessionState == self::AUTHORIZED) {
+				if ($sessionState === self::AUTHORIZED) {
 					$result = self::AUTHORIZED_MESSAGE;
 
 				} else {
-					if ($sessionState == self::REFUNDED) {
+					if ($sessionState === self::REFUNDED) {
 						$result = self::REFUNDED_MESSAGE;
 
 					} else {
-						if ($sessionState == self::PAYMENT_METHOD_CHOSEN) {
-							if (!empty($sessionSubState) && $sessionSubState == 101) {
+						if ($sessionState === self::PAYMENT_METHOD_CHOSEN) {
+							if (!empty($sessionSubState) && $sessionSubState === 101) {
 								$result = self::PAYMENT_METHOD_CHOSEN_ONLINE_MESSAGE;
 
 							} else {
-								if (!empty($sessionSubState) && $sessionSubState == 102) {
+								if (!empty($sessionSubState) && $sessionSubState === 102) {
 									$result = self::PAYMENT_METHOD_CHOSEN_OFFLINE_MESSAGE;
 
 								} else {
@@ -114,7 +113,6 @@ class GopayHelper
 
 								}
 							}
-
 						} else {
 							$result = self::FAILED_MESSAGE;
 						}
@@ -244,7 +242,7 @@ class GopayHelper
 		$secureKey
 	)
 	{
-		if ($parentPaymentSessionId == NULL) {
+		if ($parentPaymentSessionId === null) {
 			$parentPaymentSessionId = '';
 		}
 
@@ -365,8 +363,8 @@ class GopayHelper
 	 */
 	public static function hash($data)
 	{
-		if (function_exists('sha1') == TRUE) {
-			$hash = sha1($data, TRUE);
+		if (function_exists('sha1') === true) {
+			$hash = sha1($data, true);
 
 		} else {
 			$hash = mhash(MHASH_SHA1, $data);
@@ -387,8 +385,8 @@ class GopayHelper
 		$hexLength = strlen($hexString);
 
 		// vstup musi byt HEX
-		if ($hexLength % 2 != 0 || preg_match('/[^0-9a-fA-F]/', $hexString)) {
-			return FALSE;
+		if ($hexLength % 2 !== 0 || preg_match('/[^0-9a-fA-F]/', $hexString)) {
+			return false;
 		}
 
 		$binString = '';
@@ -427,35 +425,33 @@ class GopayHelper
 	)
 	{
 		if (!empty($paymentStatus)) {
-
-			if ($paymentStatus->result != self::CALL_COMPLETED) {
+			if ($paymentStatus->result !== self::CALL_COMPLETED) {
 				throw new Exception('PS invalid call state state');
 			}
 
-			if ($paymentStatus->sessionState != $sessionState) {
+			if ($paymentStatus->sessionState !== $sessionState) {
 				throw new Exception('PS invalid session state');
 			}
 
-			if (trim($paymentStatus->orderNumber) != trim($orderNumber)) {
+			if (trim($paymentStatus->orderNumber) !== trim($orderNumber)) {
 				throw new Exception('PS invalid VS');
 			}
 
-			if (trim($paymentStatus->productName) != trim($productName)) {
+			if (trim($paymentStatus->productName) !== trim($productName)) {
 				throw new Exception('PS invalid PN');
 			}
 
-			if ($paymentStatus->targetGoId != $goId) {
+			if ($paymentStatus->targetGoId !== $goId) {
 				throw new Exception('PS invalid GoID');
 			}
 
-			if ($paymentStatus->totalPrice != $totalPriceInCents) {
+			if ($paymentStatus->totalPrice !== $totalPriceInCents) {
 				throw new Exception('PS invalid price');
 			}
 
-			if ($paymentStatus->currency != $currency) {
+			if ($paymentStatus->currency !== $currency) {
 				throw new Exception('PS invalid currency');
 			}
-
 		} else {
 			throw new Exception('None payment status');
 		}
@@ -483,7 +479,7 @@ class GopayHelper
 
 		$decryptedHash = self::decrypt($paymentStatus->encryptedSignature, $secureKey);
 
-		if ($decryptedHash != $hashedSignature) {
+		if ($decryptedHash !== $hashedSignature) {
 			throw new Exception('PS invalid signature');
 		}
 	}
@@ -513,11 +509,11 @@ class GopayHelper
 		$secureKey
 	)
 	{
-		if (trim($returnedOrderNumber) != trim($orderNumber)) {
+		if (trim($returnedOrderNumber) !== trim($orderNumber)) {
 			throw new Exception('PI invalid VS');
 		}
 
-		if ($returnedGoId != $targetGoId) {
+		if ($returnedGoId !== $targetGoId) {
 			throw new Exception('PI invalid GoID');
 		}
 
@@ -533,7 +529,7 @@ class GopayHelper
 
 		$decryptedHash = self::decrypt($returnedEncryptedSignature, $secureKey);
 
-		if ($decryptedHash != $hashedSignature) {
+		if ($decryptedHash !== $hashedSignature) {
 			throw new Exception('PS invalid signature');
 		}
 	}
@@ -557,7 +553,7 @@ class GopayHelper
 		$secureKey
 	)
 	{
-		if ($returnedPaymentSessionId != $paymentSessionId) {
+		if ($returnedPaymentSessionId !== $paymentSessionId) {
 			throw new Exception('PaymentResult invalid PSID');
 		}
 
@@ -571,7 +567,7 @@ class GopayHelper
 
 		$decryptedHash = self::decrypt($returnedEncryptedSignature, $secureKey);
 
-		if ($decryptedHash != $hashedSignature) {
+		if ($decryptedHash !== $hashedSignature) {
 			throw new Exception('PaymentResult invalid signature');
 		}
 	}
@@ -587,8 +583,8 @@ class GopayHelper
 	 * @param string $orderNumber - identifikace objednavky u prijemce
 	 * @param string $successURL - URL, kam se ma prejit po uspesnem zaplaceni
 	 * @param string $failedURL - URL, kam se ma prejit po neuspesnem zaplaceni
-	 * @param boolean $preAuthorization - jedna-li se o predautorizovanou platbu
-	 * @param boolean $recurrentPayment - jedna-li se o opakovanou platbu
+	 * @param bool $preAuthorization - jedna-li se o predautorizovanou platbu
+	 * @param bool $recurrentPayment - jedna-li se o opakovanou platbu
 	 * @param string $recurrenceDateTo - do kdy se ma opakovana platba provadet
 	 * @param string $recurrenceCycle - frekvence opakovresultane platby - mesic/tyden/den
 	 * @param int $recurrencePeriod - pocet plateb v cyklu $recurrenceCycle - kolikrat v mesici/... se opakovana platba provede
@@ -616,7 +612,6 @@ class GopayHelper
 	 *
 	 * Jazyk
 	 * @param string $lang - jazyk platebni brany
-	 *
 	 * @return string HTML kod platebniho formulare
 	 */
 	public static function createPaymentForm(
@@ -650,7 +645,7 @@ class GopayHelper
 		$lang
 	)
 	{
-		$paymentChannelsString = (!empty($paymentChannels)) ? join(',', $paymentChannels) : '';
+		$paymentChannelsString = (!empty($paymentChannels)) ? implode(',', $paymentChannels) : '';
 
 		$encryptedSignature = self::encrypt(
 			self::hash(
@@ -721,8 +716,8 @@ class GopayHelper
 	 * @param string $orderNumber - identifikace objednavky u prijemce
 	 * @param string $successURL - URL, kam se ma prejit po uspesnem zaplaceni
 	 * @param string $failedURL - URL, kam se ma prejit po neuspesnem zaplaceni
-	 * @param boolean $preAuthorization - jedna-li se o predautorizovanou platbu
-	 * @param boolean $recurrentPayment - jedna-li se o opakovanou platbu
+	 * @param bool $preAuthorization - jedna-li se o predautorizovanou platbu
+	 * @param bool $recurrentPayment - jedna-li se o opakovanou platbu
 	 * @param string $recurrenceDateTo - do kdy se ma opakovana platba provadet
 	 * @param string $recurrenceCycle - frekvence opakovresultane platby - mesic/tyden/den
 	 * @param int $recurrencePeriod - pocet plateb v cyklu $recurrenceCycle - kolikrat v mesici/... se opakovana platba provede
@@ -750,7 +745,6 @@ class GopayHelper
 	 *
 	 * Jazyk
 	 * @param string $lang - jazyk platebni brany
-	 *
 	 * @return string HTML kod platebniho tlacitka
 	 */
 	public static function createPaymentHref(
@@ -784,7 +778,7 @@ class GopayHelper
 		$lang
 	)
 	{
-		$paymentChannelsString = (!empty($paymentChannels)) ? join(',', $paymentChannels) : '';
+		$paymentChannelsString = (!empty($paymentChannels)) ? implode(',', $paymentChannels) : '';
 
 		$encryptedSignature = self::encrypt(
 			self::hash(
@@ -854,19 +848,18 @@ class GopayHelper
 	/**
 	 * Pretypovani datoveho typu boolean pro webovou sluzbu
 	 *
-	 * @param boolean $boolean
-	 *
-	 * @return integer (0|1), v pripade nevalidniho zadani se vraci ""
+	 * @param bool $boolean
+	 * @return int (0|1), v pripade nevalidniho zadani se vraci ""
 	 */
 	public static function castBooleanForWS($boolean)
 	{
 		$boolean = self::castString2Boolean($boolean);
 
-		if ($boolean === FALSE) {
+		if ($boolean === false) {
 			return 0;
 
 		} else {
-			if ($boolean === TRUE) {
+			if ($boolean === true) {
 				return 1;
 
 			} else {
@@ -880,19 +873,17 @@ class GopayHelper
 	 * Pretypovani datoveho typu String na boolean
 	 *
 	 * @param String $input
-	 *
-	 * @return boolean (TRUE|FALSE) v pripade spravne nastaveneho $input, jinak puvodni $input
+	 * @return bool (TRUE|FALSE) v pripade spravne nastaveneho $input, jinak puvodni $input
 	 */
 	public static function castString2Boolean($input)
 	{
 		if (is_string($input)) {
-
-			if (strtolower($input) == 'true') {
-				return TRUE;
+			if (strtolower($input) === 'true') {
+				return true;
 
 			} else {
-				if (strtolower($input) == 'false') {
-					return FALSE;
+				if (strtolower($input) === 'false') {
+					return false;
 
 				}
 			}
@@ -906,8 +897,7 @@ class GopayHelper
 	 * Pretypovani datoveho typu boolean na String
 	 * pouziti ve  platebnim tlacitku weboveho formulare ci odkazu
 	 *
-	 * @param boolean $boolean
-	 *
+	 * @param bool $boolean
 	 * @return String ("true"|"false"), v pripade nevalidniho vstupu se vraci puvodni vstupni parametr
 	 */
 	public function castBoolean2String($boolean)
@@ -926,7 +916,7 @@ class GopayHelper
 	 */
 	private static function crypt()
 	{
-		if (self::$crypt === NULL) {
+		if (self::$crypt === null) {
 			if (extension_loaded('openssl') && PHP_VERSION_ID >= 50400) {
 				self::$crypt = new OpenSSL();
 			} elseif (extension_loaded('mcrypt') && PHP_VERSION_ID < 70000) {

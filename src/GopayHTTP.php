@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Markette\Gopay\Api;
 
@@ -54,7 +54,6 @@ class GopayHTTP
 		$contents = '';
 
 		if (!empty($handle)) {
-
 			while (!feof($handle)) {
 				$contents .= fread($handle, 8192);
 			}
