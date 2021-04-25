@@ -1,6 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Markette\Gopay\Api;
+
+use SoapClient;
+use UnexpectedValueException;
 
 class GopayConfig
 {
@@ -8,14 +11,14 @@ class GopayConfig
 	/**
 	 *  Konfiguracni trida pro ziskavani URL pro praci s platbami
 	 */
-	const TEST = 'TEST';
-	const PROD = 'PROD';
+	public const TEST = 'TEST';
+	public const PROD = 'PROD';
 
-    /**
-     * Testovaci a produkcni URL
-     */
-    const TEST_URL = 'https://gw.sandbox.gopay.com/';
-    const PROD_URL = 'https://gate.gopay.cz/';
+	/**
+	 * Testovaci a produkcni URL
+	 */
+	public const TEST_URL = 'https://gw.sandbox.gopay.com/';
+	public const PROD_URL = 'https://gate.gopay.cz/';
 
 	/**
 	 * Parametr specifikujici, pracuje-li se na testovacim ci provoznim prostredi
@@ -24,9 +27,7 @@ class GopayConfig
 	 */
 	public static $version = self::TEST;
 
-	/**
-	 * @var callable
-	 */
+	/** @var callable */
 	public static $soapClientFactory = '\Markette\Gopay\Api\SoapClientFactory::create';
 
 	/**
@@ -51,7 +52,7 @@ class GopayConfig
 	 */
 	public static function fullIntegrationURL()
 	{
-		if (self::$version == self::PROD) {
+		if (self::$version === self::PROD) {
 			return self::PROD_URL . 'gw/pay-full-v2';
 
 		} else {
@@ -68,7 +69,7 @@ class GopayConfig
 	 */
 	public static function ws()
 	{
-		if (self::$version == self::PROD) {
+		if (self::$version === self::PROD) {
 			return self::PROD_URL . 'axis/EPaymentServiceV2?wsdl';
 
 		} else {
@@ -84,7 +85,7 @@ class GopayConfig
 	 */
 	public static function fullNewIntegrationURL()
 	{
-		if (self::$version == self::PROD) {
+		if (self::$version === self::PROD) {
 			return self::PROD_URL . 'gw/v3';
 
 		} else {
@@ -101,7 +102,7 @@ class GopayConfig
 	 */
 	public static function baseIntegrationURL()
 	{
-		if (self::$version == self::PROD) {
+		if (self::$version === self::PROD) {
 			return self::PROD_URL . 'gw/pay-base-v2';
 
 		} else {
@@ -118,7 +119,7 @@ class GopayConfig
 	 */
 	public static function getAccountStatementURL()
 	{
-		if (self::$version == self::PROD) {
+		if (self::$version === self::PROD) {
 			return self::PROD_URL . 'gw/services/get-account-statement';
 
 		} else {
@@ -129,16 +130,16 @@ class GopayConfig
 
 
 	/**
-	 * @return \SoapClient
+	 * @return SoapClient
 	 */
 	public static function createSoapClient()
 	{
 		$soap = call_user_func(self::$soapClientFactory, self::ws());
-		if ($soap instanceof \SoapClient) {
+		if ($soap instanceof SoapClient) {
 			return $soap;
 		}
 
-		throw new \UnexpectedValueException('SoapClient factory does not return instance of SoapClient.');
+		throw new UnexpectedValueException('SoapClient factory does not return instance of SoapClient.');
 	}
 
 }

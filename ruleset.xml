@@ -3,7 +3,9 @@
     <!-- ########################################################################################################### -->
     <!-- Ninjify Coding Standard -->
     <!-- ########################################################################################################### -->
-    <rule ref="./vendor/ninjify/coding-standard/ruleset.xml"/>
+    <rule ref="./vendor/ninjify/coding-standard/contributte.xml">
+        <exclude name="Generic.NamingConventions.InterfaceNameSuffix.Missing"/>
+    </rule>
 
     <!-- ########################################################################################################### -->
     <!-- Markette Coding Standard -->

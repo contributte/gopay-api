@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Markette\Gopay\Api;
 
@@ -6,19 +6,19 @@ class PaymentMethodElement
 {
 
 	/** @var string */
-	public $code = NULL;
+	public $code = null;
 
 	/** @var string */
-	public $paymentMethodName = NULL;
+	public $paymentMethodName = null;
 
 	/** @var string */
-	public $description = NULL;
+	public $description = null;
 
 	/** @var string */
-	public $logo = NULL;
+	public $logo = null;
 
 	/** @var string */
-	public $offline = NULL;
+	public $offline = null;
 
 	/**
 	 * @codingStandardsIgnoreStart
