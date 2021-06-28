@@ -1,30 +1,36 @@
 {
   "name": "markette/gopay-api",
   "description": "Public GopayAPI SDK for PHP.",
-  "keywords": ["eshop", "payment", "gopay", "api", "sdk"],
+  "keywords": [
+    "eshop",
+    "payment",
+    "gopay",
+    "api",
+    "sdk"
+  ],
   "homepage": "https://github.com/Markette/GopayApi",
   "license": "BSD-3-Clause",
   "authors": [
-      {
-          "name": "Vojtěch Dobeš",
-          "email": "me@vojtechdobes.com"
-      },
-      {
-          "name": "Jan Škrášek",
-          "email": "hrach.cz@gmail.com"
-      },
-      {
-          "name": "Milan Felix Šulc",
-          "email": "sulcmil@gmail.com"
-      },
-      {
-          "name": "Jaroslav Hranička",
-          "email": "hranicka@outlook.com"
-      }
+    {
+      "name": "Vojtěch Dobeš",
+      "email": "me@vojtechdobes.com"
+    },
+    {
+      "name": "Jan Škrášek",
+      "email": "hrach.cz@gmail.com"
+    },
+    {
+      "name": "Milan Felix Šulc",
+      "email": "sulcmil@gmail.com"
+    },
+    {
+      "name": "Jaroslav Hranička",
+      "email": "hranicka@outlook.com"
+    }
   ],
   "require": {
-      "php": ">=7.0",
-      "ext-soap": "*"
+    "php": ">=7.0",
+    "ext-soap": "*"
   },
   "require-dev": {
     "mockery/mockery": "^1.3",
@@ -37,9 +43,9 @@
     "phpstan/phpstan-strict-rules": "^0.12"
   },
   "autoload": {
-      "psr-4": {
-          "Markette\\Gopay\\Api\\": "src"
-      }
+    "psr-4": {
+      "Markette\\Gopay\\Api\\": "src"
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
