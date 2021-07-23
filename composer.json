@@ -8,8 +8,8 @@
     "api",
     "sdk"
   ],
-  "homepage": "https://github.com/Markette/GopayApi",
-  "license": "BSD-3-Clause",
+  "homepage": "https://github.com/contributte/gopay-api",
+  "license": "MIT",
   "authors": [
     {
       "name": "Vojtěch Dobeš",
