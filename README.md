@@ -1,7 +1,7 @@
 ![](https://heatbadger.now.sh/github/readme/contributte/gopay-api/)
 
 <p align=center>
-  <a href="https://github.com/contributte/gopay-api/actions"><img src="https://badgen.net/travis/contributte/gopay-api?cache=300"></a>
+  <a href="https://github.com/contributte/gopay-api/actions"><img src="https://badgen.net/github/checks/contributte/gopay-api/master?cache=300"></a>
   <a href="https://coveralls.io/r/contributte/gopay-api"><img src="https://badgen.net/coveralls/c/github/contributte/gopay-api?cache=300"></a>
   <a href="https://packagist.org/packages/markette/gopay-api"><img src="https://badgen.net/packagist/dm/markette/gopay-api"></a>
   <a href="https://packagist.org/packages/markette/gopay-api"><img src="https://badgen.net/packagist/v/markette/gopay-api"></a>
