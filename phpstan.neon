@@ -3,3 +3,250 @@ includes:
 	- vendor/phpstan/phpstan-nette/extension.neon
 	- vendor/phpstan/phpstan-nette/rules.neon
 	- vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+	treatPhpDocTypesAsCertain: false
+
+	ignoreErrors:
+		- "#^Call to deprecated function mcrypt(.*)\\(\\)\\.$#"
+		- "#^Call to deprecated function mdecrypt(.*)\\(\\)\\.$#"
+
+		-
+			message: "#^Parameter \\#1 \\$td of function mcrypt_enc_get_iv_size expects resource, resource\\|false given\\.$#"
+			count: 2
+			path: src/Crypt/MCrypt.php
+
+		-
+			message: "#^Parameter \\#1 \\$td of function mcrypt_enc_get_key_size expects resource, resource\\|false given\\.$#"
+			count: 2
+			path: src/Crypt/MCrypt.php
+
+		-
+			message: "#^Parameter \\#1 \\$td of function mcrypt_generic expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: src/Crypt/MCrypt.php
+
+		-
+			message: "#^Parameter \\#1 \\$td of function mcrypt_generic_deinit expects resource, resource\\|false given\\.$#"
+			count: 2
+			path: src/Crypt/MCrypt.php
+
+		-
+			message: "#^Parameter \\#1 \\$td of function mcrypt_generic_init expects resource, resource\\|false given\\.$#"
+			count: 2
+			path: src/Crypt/MCrypt.php
+
+		-
+			message: "#^Parameter \\#1 \\$td of function mcrypt_module_close expects resource, resource\\|false given\\.$#"
+			count: 2
+			path: src/Crypt/MCrypt.php
+
+		-
+			message: "#^Parameter \\#1 \\$td of function mdecrypt_generic expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: src/Crypt/MCrypt.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of function bin2hex expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Crypt/OpenSSL.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Crypt/OpenSSL.php
+
+		-
+			message: "#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#"
+			count: 1
+			path: src/GopayHTTP.php
+
+		-
+			message: "#^Casting to float something that's already float\\.$#"
+			count: 2
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#"
+			count: 5
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Else branch is unreachable because previous condition is always true\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:castBooleanForWS\\(\\) should return int but returns string\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:castString2Boolean\\(\\) should return bool but returns string\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:convert\\(\\) should return string but returns false\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:createPaymentForm\\(\\) has parameter \\$defaultPaymentChannel with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:createPaymentForm\\(\\) has parameter \\$paymentChannels with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:createPaymentHref\\(\\) has parameter \\$defaultPaymentChannel with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:createPaymentHref\\(\\) has parameter \\$paymentChannels with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Only booleans are allowed in \\|\\|, int\\|false given on the right side\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#1 \\$ascii of function chr expects int, float\\|int given\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#1 \\$boolean of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:castBooleanForWS\\(\\) expects bool, int given\\.$#"
+			count: 4
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of function bin2hex expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#1 \\$input of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:castString2Boolean\\(\\) expects string, bool given\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function trim expects string, array given\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function trim expects string, int given\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function urlencode expects string, array given\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#2 \\$result of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:concatPaymentResult\\(\\) expects string, float given\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#8 \\$preAuthorization of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:concatPaymentCommand\\(\\) expects int, bool given\\.$#"
+			count: 2
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Parameter \\#9 \\$recurrentPayment of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:concatPaymentCommand\\(\\) expects int, bool given\\.$#"
+			count: 2
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Static call to instance method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:castBoolean2String\\(\\)\\.$#"
+			count: 4
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and true will always evaluate to true\\.$#"
+			count: 1
+			path: src/GopayHelper.php
+
+		-
+			message: "#^Call to deprecated method __call\\(\\) of class SoapClient\\.$#"
+			count: 10
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopaySoap\\:\\:isPaymentDone\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopaySoap\\:\\:isPaymentDoneWCust\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\GopaySoap\\:\\:paymentMethodList\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#1 \\$input of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:castString2Boolean\\(\\) expects string, bool given\\.$#"
+			count: 2
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#10 \\$recurrenceDateTo of static method Markette\\\\Gopay\\\\Api\\\\GopaySoap\\:\\:createBasePayment\\(\\) expects string, null given\\.$#"
+			count: 2
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#11 \\$recurrenceCycle of static method Markette\\\\Gopay\\\\Api\\\\GopaySoap\\:\\:createBasePayment\\(\\) expects string, null given\\.$#"
+			count: 2
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#12 \\$recurrencePeriod of static method Markette\\\\Gopay\\\\Api\\\\GopaySoap\\:\\:createBasePayment\\(\\) expects int, null given\\.$#"
+			count: 2
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#2 \\$orderNumber of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:concatRecurrenceRequest\\(\\) expects string, int given\\.$#"
+			count: 1
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#3 \\$amount of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:concatRefundRequest\\(\\) expects string, float given\\.$#"
+			count: 1
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#4 \\$orderNumber of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:checkPaymentStatus\\(\\) expects string, int given\\.$#"
+			count: 1
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#8 \\$preAuthorization of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:concatPaymentCommand\\(\\) expects int, bool given\\.$#"
+			count: 1
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Parameter \\#9 \\$recurrentPayment of static method Markette\\\\Gopay\\\\Api\\\\GopayHelper\\:\\:concatPaymentCommand\\(\\) expects int, bool given\\.$#"
+			count: 1
+			path: src/GopaySoap.php
+
+		-
+			message: "#^Method Markette\\\\Gopay\\\\Api\\\\PaymentMethods\\:\\:adapt\\(\\) has parameter \\$paymentMethodsWS with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PaymentMethods.php
+
+		-
+			message: "#^Property Markette\\\\Gopay\\\\Api\\\\PaymentMethods\\:\\:\\$paymentMethods type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PaymentMethods.php
