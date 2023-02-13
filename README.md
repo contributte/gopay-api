@@ -23,7 +23,7 @@ Website ðŸš€ <a href="https://contributte.org">contributte.org</a> | Contact ðŸ‘
 To install latest version of `markette/gopay-api` use [Composer](https://getcomposer.org).
 
 ```bash
-composer install markette/gopay-api
+composer require markette/gopay-api
 ```
 
 ## Documentation
